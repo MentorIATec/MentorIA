@@ -84,6 +84,7 @@ externas, funcionan sin internet), con:
 | Archivo | Uso |
 |---|---|
 | `index.html` | Hub de navegación entre todas las plantillas |
+| `presentacion-taller.html` | Diapositivas de apoyo para los 90 minutos, con enlaces directos a cada plantilla |
 | `mapa-contexto.html` | Mapa de contexto mínimo (empatía, Design Thinking) |
 | `canvas-intervencion-residencial.html` | Canvas de 10 preguntas para documentar una intervención |
 | `copiloto-prompts.html` | Constructor de prompts C.O.P.I.L.O.T.O. + biblioteca de 5 prompts reutilizables |
