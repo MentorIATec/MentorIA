@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recursos de prefectura — MentorIA</title>
+<style>
+  :root{
+    --primary:#2c3e50;
+    --muted:#7f8c8d;
+    --accent:#3498db;
+    --accent-dark:#2980b9;
+    --bg:#f9f9f9;
+    --card:#ffffff;
+    --border:#ddd;
+  }
+  *{box-sizing:border-box;}
+  body{font-family:Arial, sans-serif; margin:0; padding:0; background:var(--bg); color:#333;}
+  .container{max-width:860px; margin:0 auto; padding:24px;}
+  header{text-align:center; margin-bottom:24px;}
+  h1{color:var(--primary); margin-bottom:4px;}
+  header p{margin-top:0; color:var(--muted);}
+  .grid{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  @media (max-width:640px){ .grid{grid-template-columns:1fr;} }
+  .tool{background:var(--card); border-radius:10px; box-shadow:0 4px 6px rgba(0,0,0,0.08); padding:20px; display:flex; flex-direction:column;}
+  .tool h2{margin:0 0 8px; color:var(--primary); font-size:17px;}
+  .tool p{color:var(--muted); font-size:14px; flex-grow:1;}
+  .tool a{
+    display:inline-block; margin-top:10px; background:var(--accent); color:#fff; text-decoration:none;
+    padding:10px 16px; border-radius:6px; font-size:14px; text-align:center;
+  }
+  .tool a:hover{background:var(--accent-dark);}
+  .note{background:#eaf4fc; border-left:4px solid var(--accent); border-radius:6px; padding:14px 18px; margin:24px 0; font-size:14px; color:var(--primary);}
+  footer{text-align:center; color:var(--muted); font-size:12px; margin:30px 0 10px;}
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>Recursos de prefectura</h1>
+    <p>Plantillas reutilizables para diseñar comunidad con Design Thinking + IA</p>
+  </header>
+
+  <div class="grid">
+    <div class="tool">
+      <h2>🗺️ Mapa de contexto mínimo</h2>
+      <p>Empatía antes que prompting: quién es la persona, qué situación vive, qué necesita y qué pregunta de diseño se genera.</p>
+      <a href="mapa-contexto.html">Abrir plantilla</a>
+    </div>
+    <div class="tool">
+      <h2>📋 Canvas de intervención residencial</h2>
+      <p>Las 10 preguntas para convertir un evento o intervención en evidencia documentada: reto, participación, resultado, aprendizaje y transferibilidad.</p>
+      <a href="canvas-intervencion-residencial.html">Abrir plantilla</a>
+    </div>
+    <div class="tool">
+      <h2>🤖 Constructor de prompts C.O.P.I.L.O.T.O.</h2>
+      <p>Arma un prompt completo campo por campo y cópialo, más una biblioteca de 5 prompts listos para eventos, conversaciones, comunicación, mantenimiento y documentación.</p>
+      <a href="copiloto-prompts.html">Abrir plantilla</a>
+    </div>
+    <div class="tool">
+      <h2>🚦 Semáforo de uso responsable</h2>
+      <p>Referencia de una página: qué es seguro darle a una IA, qué hay que verificar y qué nunca debe compartirse.</p>
+      <a href="semaforo-ia.html">Abrir plantilla</a>
+    </div>
+  </div>
+
+  <div class="note">
+    <strong>Cómo usarlas:</strong> ábrelas en cualquier navegador (con o sin internet), llénalas desde tu laptop,
+    y usa el botón "Descargar como PDF" de cada una (elige "Guardar como PDF" en el diálogo de impresión).
+    Nada se sube a un servidor: los datos se guardan solo en el navegador de esa computadora mientras trabajas.
+    Son reutilizables cada semestre, para cualquier piso, comunidad o actividad nueva.
+  </div>
+
+  <footer>MentorIA · Ver también <a href="README.md">README.md</a> para la auditoría y agenda del taller</footer>
+</div>
+</body>
+</html>

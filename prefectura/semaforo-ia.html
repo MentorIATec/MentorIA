@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semáforo de uso responsable de IA en prefectura</title>
+<style>
+  :root{
+    --primary:#2c3e50;
+    --muted:#7f8c8d;
+    --accent:#3498db;
+    --accent-dark:#2980b9;
+    --bg:#f9f9f9;
+    --card:#ffffff;
+    --border:#ddd;
+    --green:#27ae60;
+    --yellow:#f1c40f;
+    --red:#e74c3c;
+  }
+  *{box-sizing:border-box;}
+  body{font-family:Arial, sans-serif; margin:0; padding:0; background:var(--bg); color:#333;}
+  .container{max-width:960px; margin:0 auto; padding:24px;}
+  header{text-align:center; margin-bottom:20px;}
+  h1{color:var(--primary); margin-bottom:4px;}
+  header p{margin-top:0; color:var(--muted);}
+  .thesis{background:#eaf4fc; border-left:4px solid var(--accent); border-radius:6px; padding:14px 18px; margin-bottom:24px; font-size:15px; color:var(--primary);}
+  .semaforo{display:grid; grid-template-columns:repeat(3, 1fr); gap:16px;}
+  @media (max-width:720px){ .semaforo{grid-template-columns:1fr;} }
+  .columna{border-radius:10px; overflow:hidden; box-shadow:0 4px 6px rgba(0,0,0,0.08); background:var(--card);}
+  .col-header{padding:14px; text-align:center; font-weight:bold; font-size:17px; color:#fff;}
+  .col-verde .col-header{background:var(--green);}
+  .col-amarillo .col-header{background:var(--yellow); color:#5c4500;}
+  .col-rojo .col-header{background:var(--red);}
+  .col-body{padding:14px 18px;}
+  .col-body ul{margin:0; padding-left:20px;}
+  .col-body li{margin-bottom:9px; font-size:14px; display:flex; align-items:flex-start; gap:8px;}
+  .col-body li input{margin-top:3px;}
+  .actions{display:flex; gap:10px; flex-wrap:wrap; margin:24px 0 10px; justify-content:center;}
+  button{
+    background:var(--accent); color:#fff; border:none; padding:12px 18px; border-radius:6px;
+    cursor:pointer; font-size:15px; transition:background .2s;
+  }
+  button:hover{background:var(--accent-dark);}
+  button.secondary{background:#95a5a6;}
+  button.secondary:hover{background:#7f8c8d;}
+  footer{text-align:center; color:var(--muted); font-size:12px; margin:30px 0 10px;}
+
+  @media print{
+    body{background:#fff;}
+    .no-print{display:none !important;}
+    .columna{box-shadow:none; border:1px solid #ccc; page-break-inside:avoid;}
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>Semáforo de uso responsable de IA</h1>
+    <p>Referencia rápida para eventos, conversaciones 1 a 1, mantenimiento y guardias</p>
+  </header>
+
+  <div class="thesis">
+    La IA no construye comunidad. Las personas construyen comunidad. La IA puede ayudarnos a escuchar mejor,
+    generar alternativas, reducir trabajo operativo y convertir una buena práctica en evidencia compartible —
+    nunca a decidir por nosotros ni a recibir datos personales identificables.
+  </div>
+
+  <div class="semaforo">
+    <div class="columna col-verde">
+      <div class="col-header">Verde — uso permitido</div>
+      <div class="col-body">
+        <ul>
+          <li><input type="checkbox">Ideas y lluvia de alternativas</li>
+          <li><input type="checkbox">Casos ficticios de práctica</li>
+          <li><input type="checkbox">Planeación y cronogramas</li>
+          <li><input type="checkbox">Listas de compra</li>
+          <li><input type="checkbox">Presupuestos preliminares</li>
+          <li><input type="checkbox">Mensajes de difusión</li>
+          <li><input type="checkbox">Rúbricas e indicadores</li>
+          <li><input type="checkbox">Reflexión sobre resultados anonimizados</li>
+          <li><input type="checkbox">Práctica de conversaciones simuladas</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="columna col-amarillo">
+      <div class="col-header">Amarillo — revisar y verificar</div>
+      <div class="col-body">
+        <ul>
+          <li><input type="checkbox">Información sobre servicios institucionales</li>
+          <li><input type="checkbox">Orientaciones sobre protocolos</li>
+          <li><input type="checkbox">Cálculos y presupuestos</li>
+          <li><input type="checkbox">Interpretación de encuestas</li>
+          <li><input type="checkbox">Recomendaciones para situaciones sensibles</li>
+          <li><input type="checkbox">Resúmenes de documentos institucionales</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="columna col-rojo">
+      <div class="col-header">Rojo — no introducir</div>
+      <div class="col-body">
+        <ul>
+          <li><input type="checkbox">Nombres, matrículas o habitaciones</li>
+          <li><input type="checkbox">Información médica o de salud mental</li>
+          <li><input type="checkbox">Confesiones o conversaciones privadas</li>
+          <li><input type="checkbox">Detalles identificables de conflictos</li>
+          <li><input type="checkbox">Reportes disciplinarios</li>
+          <li><input type="checkbox">Datos de emergencia</li>
+          <li><input type="checkbox">Diagnósticos o perfiles psicológicos</li>
+          <li><input type="checkbox">Decisiones sobre riesgo o canalización</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions no-print">
+    <button onclick="window.print()">🖨️ Descargar como PDF</button>
+    <button class="secondary" onclick="limpiarChecks()">Reiniciar casillas</button>
+  </div>
+  <p class="hint no-print" style="text-align:center; color:var(--muted);">Las situaciones críticas o de riesgo siempre siguen los protocolos institucionales y requieren contacto humano inmediato.</p>
+
+  <footer>MentorIA · Recursos de prefectura · reutilizable para cualquier piso o comunidad</footer>
+</div>
+
+<script>
+const STORAGE_KEY = 'prefectura_semaforo_checks';
+const checkboxes = Array.from(document.querySelectorAll('input[type=checkbox]'));
+
+checkboxes.forEach((cb, idx) => {
+  cb.dataset.idx = idx;
+  cb.addEventListener('change', guardar);
+});
+
+function guardar(){
+  const estado = checkboxes.map(cb => cb.checked);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(estado));
+}
+
+function cargar(){
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if(!raw) return;
+  try{
+    const estado = JSON.parse(raw);
+    checkboxes.forEach((cb, idx) => cb.checked = !!estado[idx]);
+  }catch(e){}
+}
+
+function limpiarChecks(){
+  checkboxes.forEach(cb => cb.checked = false);
+  localStorage.removeItem(STORAGE_KEY);
+}
+
+cargar();
+</script>
+</body>
+</html>

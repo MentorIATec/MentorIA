@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Canvas de intervención residencial</title>
+<style>
+  :root{
+    --primary:#2c3e50;
+    --muted:#7f8c8d;
+    --accent:#3498db;
+    --accent-dark:#2980b9;
+    --bg:#f9f9f9;
+    --card:#ffffff;
+    --border:#ddd;
+  }
+  *{box-sizing:border-box;}
+  body{font-family:Arial, sans-serif; margin:0; padding:0; background:var(--bg); color:#333;}
+  .container{max-width:960px; margin:0 auto; padding:24px;}
+  header{text-align:center; margin-bottom:24px;}
+  h1{color:var(--primary); margin-bottom:4px;}
+  header p{margin-top:0; color:var(--muted);}
+  .card{background:var(--card); border-radius:10px; box-shadow:0 4px 6px rgba(0,0,0,0.08); padding:20px; margin-bottom:20px;}
+  .card h2{margin-top:0; color:var(--primary); font-size:18px; border-bottom:2px solid var(--accent); padding-bottom:8px;}
+  .meta-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); gap:14px;}
+  label{display:block; font-weight:bold; margin-bottom:4px; font-size:14px; color:var(--primary);}
+  input[type=text], input[type=date], select, textarea{
+    width:100%; padding:9px; border:1px solid var(--border); border-radius:6px;
+    font-family:inherit; font-size:14px; background:#fff;
+  }
+  textarea{resize:vertical; min-height:70px;}
+  .field{margin-bottom:14px;}
+  .canvas-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  @media (max-width:640px){ .canvas-grid{grid-template-columns:1fr;} }
+  .box{background:var(--card); border:1px solid var(--border); border-radius:10px; padding:16px;}
+  .box h3{margin:0 0 4px; color:var(--primary); font-size:15px;}
+  .box .hint{color:var(--muted); font-size:12px; margin:0 0 8px;}
+  .actions{display:flex; gap:10px; flex-wrap:wrap; margin:20px 0 10px;}
+  button{
+    background:var(--accent); color:#fff; border:none; padding:12px 18px; border-radius:6px;
+    cursor:pointer; font-size:15px; transition:background .2s;
+  }
+  button:hover{background:var(--accent-dark);}
+  button.secondary{background:#95a5a6;}
+  button.secondary:hover{background:#7f8c8d;}
+  .print-value{display:none;}
+  footer{text-align:center; color:var(--muted); font-size:12px; margin:30px 0 10px;}
+
+  @media print{
+    body{background:#fff;}
+    .no-print{display:none !important;}
+    .card, .box{box-shadow:none; border:1px solid #ccc; page-break-inside:avoid;}
+    .canvas-grid{grid-template-columns:1fr 1fr;}
+    textarea, input, select{display:none;}
+    .print-value{display:block; white-space:pre-wrap; border:1px solid #ccc; border-radius:6px; padding:8px; font-size:13px; min-height:18px;}
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>Canvas de intervención residencial</h1>
+    <p>De evento a buena práctica documentada — herramienta de prefectura / MentorIA</p>
+  </header>
+
+  <div class="card">
+    <h2>Datos generales</h2>
+    <div class="meta-grid">
+      <div class="field"><label>Prefecto/a</label><input type="text" id="nombre"></div>
+      <div class="field"><label>Piso o comunidad</label><input type="text" id="piso"></div>
+      <div class="field"><label>Fecha</label><input type="date" id="fecha"></div>
+      <div class="field"><label>Nombre de la intervención</label><input type="text" id="intervencion-nombre"></div>
+    </div>
+  </div>
+
+  <div class="canvas-grid">
+    <div class="box">
+      <h3>1. Reto observado</h3>
+      <p class="hint">¿Qué necesidad intentamos atender?</p>
+      <textarea id="c1"></textarea>
+    </div>
+    <div class="box">
+      <h3>2. Evidencia inicial</h3>
+      <p class="hint">¿Cómo sabemos que existe?</p>
+      <textarea id="c2"></textarea>
+    </div>
+    <div class="box">
+      <h3>3. Población</h3>
+      <p class="hint">¿Quiénes están involucrados y qué diferencias debemos considerar?</p>
+      <textarea id="c3"></textarea>
+    </div>
+    <div class="box">
+      <h3>4. Intervención</h3>
+      <p class="hint">¿Qué hicimos y por qué?</p>
+      <textarea id="c4"></textarea>
+    </div>
+    <div class="box">
+      <h3>5. Participación</h3>
+      <p class="hint">¿Cuántas personas asistieron y qué perfiles estuvieron representados?</p>
+      <textarea id="c5"></textarea>
+    </div>
+    <div class="box">
+      <h3>6. Resultado de comunidad</h3>
+      <p class="hint">¿Qué cambió en conexiones, confianza, pertenencia, conocimiento de recursos o colaboración?</p>
+      <textarea id="c6"></textarea>
+    </div>
+    <div class="box">
+      <h3>7. Evidencia</h3>
+      <p class="hint">¿Qué datos, testimonios anonimizados u observaciones lo respaldan?</p>
+      <textarea id="c7"></textarea>
+    </div>
+    <div class="box">
+      <h3>8. Aprendizaje</h3>
+      <p class="hint">¿Qué funcionó, qué no y qué adaptaríamos?</p>
+      <textarea id="c8"></textarea>
+    </div>
+    <div class="box">
+      <h3>9. Transferibilidad</h3>
+      <p class="hint">¿Cómo podría replicarse en otro piso, residencia o institución?</p>
+      <textarea id="c9"></textarea>
+    </div>
+    <div class="box">
+      <h3>10. Uso de IA</h3>
+      <p class="hint">¿En qué etapas se utilizó, qué aportó y qué decisiones permanecieron bajo responsabilidad humana?</p>
+      <textarea id="c10"></textarea>
+    </div>
+  </div>
+
+  <div class="actions no-print">
+    <button onclick="window.print()">🖨️ Descargar como PDF</button>
+    <button class="secondary" onclick="limpiarFormulario()">Limpiar formulario</button>
+  </div>
+  <p class="hint no-print" style="text-align:center; color:var(--muted);">Al imprimir, elige "Guardar como PDF" como destino. Este canvas, una vez lleno, es el insumo directo para informes semestrales, Premios LiFE, Borrego de Oro o una postulación a congreso.</p>
+
+  <footer>MentorIA · Recursos de prefectura · reutilizable para cualquier piso o comunidad</footer>
+</div>
+
+<script>
+const STORAGE_KEY = 'prefectura_canvas_intervencion';
+const fieldIds = ['nombre','piso','fecha','intervencion-nombre','c1','c2','c3','c4','c5','c6','c7','c8','c9','c10'];
+
+function guardar(){
+  const data = {};
+  fieldIds.forEach(id => data[id] = document.getElementById(id).value);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+}
+
+function cargar(){
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if(!raw) return;
+  try{
+    const data = JSON.parse(raw);
+    fieldIds.forEach(id => { if(data[id] !== undefined) document.getElementById(id).value = data[id]; });
+  }catch(e){}
+}
+
+function limpiarFormulario(){
+  if(!confirm('¿Borrar todo el contenido de este formulario?')) return;
+  fieldIds.forEach(id => document.getElementById(id).value = '');
+  localStorage.removeItem(STORAGE_KEY);
+}
+
+fieldIds.forEach(id => document.getElementById(id).addEventListener('input', guardar));
+
+function prepararImpresion(){
+  document.querySelectorAll('textarea, input[type=text], input[type=date]').forEach(el => {
+    const div = document.createElement('div');
+    div.className = 'print-value';
+    div.textContent = el.value && el.value.trim() ? el.value : '—';
+    el.insertAdjacentElement('afterend', div);
+  });
+}
+function restaurarDespuesDeImprimir(){
+  document.querySelectorAll('.print-value').forEach(d => d.remove());
+}
+window.addEventListener('beforeprint', prepararImpresion);
+window.addEventListener('afterprint', restaurarDespuesDeImprimir);
+
+cargar();
+</script>
+</body>
+</html>
