@@ -63,6 +63,7 @@
   .site-footer-brand{font-weight:800; color:var(--ink); display:flex; align-items:center; justify-content:center; gap:8px;}
 
   @media print{
+    *{-webkit-print-color-adjust:exact; print-color-adjust:exact; color-adjust:exact;}
     body{background:#fff;}
     .no-print{display:none !important;}
     .columna{box-shadow:none; border:1.5px solid #999; page-break-inside:avoid;}

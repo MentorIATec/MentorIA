@@ -65,10 +65,14 @@
   .site-footer-brand{font-weight:800; color:var(--ink); display:flex; align-items:center; justify-content:center; gap:8px;}
 
   @media print{
+    *{-webkit-print-color-adjust:exact; print-color-adjust:exact; color-adjust:exact;}
     body{background:#fff;}
     .no-print{display:none !important;}
     .card, .box{box-shadow:none; border:1.5px solid #999; page-break-inside:avoid;}
-    .canvas-grid{grid-template-columns:1fr 1fr;}
+    /* Grid en impresión es un punto débil conocido de WebKit (recorta o desordena
+       celdas entre saltos de página); en PDF usamos una sola columna en flujo normal. */
+    .canvas-grid{display:block;}
+    .box{margin-bottom:12px;}
     textarea, input, select{display:none;}
     .print-value{display:block; white-space:pre-wrap; border:1px solid #ccc; border-radius:6px; padding:8px; font-size:13px; min-height:18px;}
   }
@@ -148,7 +152,7 @@
   </div>
 
   <div class="actions no-print">
-    <button onclick="window.print()">🖨️ Descargar como PDF</button>
+    <button onclick="descargarPDF()">🖨️ Descargar como PDF</button>
     <button class="secondary" onclick="limpiarFormulario()">Limpiar formulario</button>
   </div>
   <p class="hint no-print" style="text-align:center; color:var(--ink-soft);">Al imprimir, elige "Guardar como PDF" como destino. Llenar este canvas al cerrar cada intervención te ahorra el problema de recordar cifras y detalles meses después, cuando llegue la convocatoria o el informe semestral: ya tendrás un resumen ordenado, listo para adaptar al formato que te pidan.</p>
@@ -189,6 +193,7 @@ function limpiarFormulario(){
 fieldIds.forEach(id => document.getElementById(id).addEventListener('input', guardar));
 
 function prepararImpresion(){
+  restaurarDespuesDeImprimir(); // idempotente: evita duplicar si ya se preparó (ej. Cmd/Ctrl+P y el botón se disparan ambos)
   document.querySelectorAll('textarea, input[type=text], input[type=date]').forEach(el => {
     const div = document.createElement('div');
     div.className = 'print-value';
@@ -199,8 +204,24 @@ function prepararImpresion(){
 function restaurarDespuesDeImprimir(){
   document.querySelectorAll('.print-value').forEach(d => d.remove());
 }
+
+// Safari no siempre pinta los cambios de "beforeprint" antes de capturar el PDF
+// (puede generar una página en blanco). Al usar el botón, preparamos el DOM y
+// esperamos dos frames de pintura antes de llamar a print() para dar tiempo
+// a WebKit. "beforeprint"/"afterprint" y matchMedia quedan como respaldo para
+// quien imprima con Cmd/Ctrl+P en vez del botón.
+function descargarPDF(){
+  prepararImpresion();
+  requestAnimationFrame(() => requestAnimationFrame(() => window.print()));
+}
+
 window.addEventListener('beforeprint', prepararImpresion);
 window.addEventListener('afterprint', restaurarDespuesDeImprimir);
+if(window.matchMedia){
+  window.matchMedia('print').addEventListener('change', (e) => {
+    if(e.matches) prepararImpresion(); else restaurarDespuesDeImprimir();
+  });
+}
 
 cargar();
 </script>

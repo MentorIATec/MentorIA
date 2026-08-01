@@ -114,12 +114,24 @@
   .controls .counter{color:#fff; font-size:13px; background:rgba(255,255,255,.15); padding:8px 16px; border-radius:20px; font-weight:700;}
 
   @media print{
-    body{overflow:visible; background:#fff;}
+    /* vh/vw y position:fixed/absolute son puntos débiles conocidos al imprimir en
+       Safari (la unidad de viewport puede calcularse mal contra el tamaño de la
+       hoja). Para el PDF convertimos el deck en un documento normal de arriba a
+       abajo, con un salto de página por diapositiva, en vez de depender del
+       tamaño de pantalla. */
+    *{-webkit-print-color-adjust:exact; print-color-adjust:exact; color-adjust:exact;}
+    html, body{height:auto; overflow:visible; background:#fff;}
     .no-print{display:none !important;}
     .progress{display:none;}
+    .deck{height:auto; width:auto;}
     .slide{
-      display:flex !important; height:auto; min-height:100vh; page-break-after:always;
+      display:flex !important; position:static; height:auto; min-height:0; width:auto;
+      page-break-after:always; break-after:page; page-break-inside:avoid;
     }
+    .slide:last-child{page-break-after:auto; break-after:auto;}
+    .slide-brand{position:static; margin-bottom:14px;}
+    .time-badge{position:static; display:inline-block; margin-bottom:12px;}
+    .slide-footer{position:static; margin-top:24px;}
   }
 </style>
 </head>
