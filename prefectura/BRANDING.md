@@ -76,7 +76,7 @@ Copiar este bloque al final de cualquier página o documento nuevo:
   <p class="site-footer-brand"><span class="brand-mark">DC·IA</span> Diseñar comunidad con IA — Taller de Prefectura</p>
   <p>Tecnológico de Monterrey, Campus Monterrey</p>
   <p>© 2026 Karen Ariadna Guzmán Vega · <a href="mailto:kareng@tec.mx">kareng@tec.mx</a></p>
-  <p>Contenido bajo licencia <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> — puede adaptarse citando a la autora, sin fines comerciales, compartiendo bajo la misma licencia.</p>
+  <p>Contenido bajo licencia <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a>: puede adaptarse citando a la autora, sin fines comerciales, compartiendo bajo la misma licencia.</p>
 </footer>
 ```
 
