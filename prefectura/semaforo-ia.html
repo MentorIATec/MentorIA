@@ -6,35 +6,36 @@
 <title>Semáforo de uso responsable de IA en prefectura</title>
 <style>
   :root{
-    --ink:#1E2A32;
-    --ink-soft:#57646B;
-    --paper:#F6F3EC;
+    --ink:#21232B;
+    --ink-soft:#5B5B66;
+    --paper:#FFF6E9;
     --card:#FFFFFF;
-    --line:#E4DED2;
-    --teal:#2F6F6B;
-    --teal-dark:#24534F;
-    --teal-soft:#E3EEEC;
-    --gold:#C79A3D;
-    --verde:#4C8C63;
-    --amarillo:#D9A441;
-    --rojo:#C1503A;
+    --line:#EAD9C2;
+    --coral:#FF6B4A;
+    --coral-dark:#E24F30;
+    --yellow:#FFC93C;
+    --teal:#2FB8A6;
+    --teal-dark:#229184;
+    --verde:#3FAE7A;
+    --amarillo:#FFC93C;
+    --rojo:#E5484D;
   }
   *{box-sizing:border-box;}
   body{font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif; margin:0; padding:0; background:var(--paper); color:var(--ink);}
-  .topbar{height:5px; background:linear-gradient(90deg, var(--teal), var(--gold));}
+  .topbar{height:6px; background:linear-gradient(90deg, var(--coral), var(--yellow), var(--teal));}
   .container{max-width:960px; margin:0 auto; padding:32px 24px 12px;}
   .brand-bar{display:flex; align-items:center; gap:10px; margin-bottom:22px;}
-  .brand-mark{background:var(--teal); color:#fff; font-weight:bold; font-size:12px; letter-spacing:.5px; padding:5px 9px; border-radius:6px;}
-  .brand-name{color:var(--ink-soft); font-size:13px; font-weight:bold; letter-spacing:.3px;}
+  .brand-mark{background:var(--teal); color:#fff; font-weight:800; font-size:12px; letter-spacing:.5px; padding:5px 10px; border-radius:10px;}
+  .brand-name{color:var(--ink-soft); font-size:13px; font-weight:800; letter-spacing:.3px;}
   header{text-align:center; margin-bottom:20px;}
-  .kicker{color:var(--teal); font-weight:bold; letter-spacing:1px; text-transform:uppercase; font-size:12.5px; margin-bottom:6px;}
-  h1{font-family:Georgia,'Iowan Old Style','Palatino Linotype','Book Antiqua',serif; color:var(--ink); margin:0 0 6px; font-size:28px;}
+  .kicker{color:var(--teal); font-weight:800; letter-spacing:1px; text-transform:uppercase; font-size:12.5px; margin-bottom:6px;}
+  h1{font-weight:900; letter-spacing:-.5px; color:var(--ink); margin:0 0 6px; font-size:30px;}
   header p.subtitle{margin:0; color:var(--ink-soft); font-size:14.5px;}
-  .thesis{background:var(--teal-soft); border-left:4px solid var(--teal); border-radius:8px; padding:14px 18px; margin-bottom:24px; font-size:15px; color:var(--ink);}
+  .thesis{background:#FFF1D6; border:2.5px solid var(--ink); border-radius:18px; padding:14px 18px; margin-bottom:24px; font-size:15px; color:var(--ink);}
   .semaforo{display:grid; grid-template-columns:repeat(3, 1fr); gap:16px;}
   @media (max-width:720px){ .semaforo{grid-template-columns:1fr;} }
-  .columna{border-radius:14px; overflow:hidden; box-shadow:0 10px 24px rgba(30,42,50,.08); background:var(--card);}
-  .col-header{padding:14px; text-align:center; font-weight:bold; font-size:16px; color:#fff; font-family:Georgia,serif;}
+  .columna{border-radius:20px; overflow:hidden; border:2.5px solid var(--ink); box-shadow:6px 6px 0 rgba(33,35,43,.08); background:var(--card);}
+  .col-header{padding:14px; text-align:center; font-weight:900; font-size:16px; color:#fff;}
   .col-verde .col-header{background:var(--verde);}
   .col-amarillo .col-header{background:var(--amarillo); color:#5c4500;}
   .col-rojo .col-header{background:var(--rojo);}
@@ -44,21 +45,21 @@
   .col-body li input{margin-top:3px;}
   .actions{display:flex; gap:10px; flex-wrap:wrap; margin:24px 0 10px; justify-content:center;}
   button{
-    background:var(--teal); color:#fff; border:none; padding:12px 20px; border-radius:999px;
-    cursor:pointer; font-size:14.5px; font-weight:bold; transition:background .2s;
+    background:var(--coral); color:#fff; border:2.5px solid var(--ink); padding:12px 22px; border-radius:999px;
+    cursor:pointer; font-size:14.5px; font-weight:800; transition:transform .1s, background .2s;
   }
-  button:hover{background:var(--teal-dark);}
-  button.secondary{background:transparent; color:var(--ink-soft); border:1px solid var(--line);}
-  button.secondary:hover{background:var(--teal-soft); color:var(--ink);}
-  .site-footer{max-width:960px; margin:34px auto 18px; padding-top:18px; border-top:1px solid var(--line); text-align:center; color:var(--ink-soft); font-size:12px; line-height:1.7;}
+  button:hover{background:var(--coral-dark); transform:translateY(-1px);}
+  button.secondary{background:transparent; color:var(--ink-soft); border:2px solid var(--line);}
+  button.secondary:hover{background:#fff; color:var(--ink); border-color:var(--ink);}
+  .site-footer{max-width:960px; margin:34px auto 18px; padding-top:18px; border-top:2px solid var(--line); text-align:center; color:var(--ink-soft); font-size:12px; line-height:1.7;}
   .site-footer p{margin:2px 0;}
-  .site-footer a{color:var(--teal);}
-  .site-footer-brand{font-weight:bold; color:var(--ink); display:flex; align-items:center; justify-content:center; gap:8px;}
+  .site-footer a{color:var(--teal); font-weight:700;}
+  .site-footer-brand{font-weight:800; color:var(--ink); display:flex; align-items:center; justify-content:center; gap:8px;}
 
   @media print{
     body{background:#fff;}
     .no-print{display:none !important;}
-    .columna{box-shadow:none; border:1px solid #ccc; page-break-inside:avoid;}
+    .columna{box-shadow:none; border:1.5px solid #999; page-break-inside:avoid;}
   }
 </style>
 </head>
@@ -68,7 +69,7 @@
   <div class="brand-bar"><span class="brand-mark">DC·IA</span><span class="brand-name">Diseñar comunidad con IA</span></div>
   <header>
     <p class="kicker">Prefectura · MentorIA</p>
-    <h1>Semáforo de uso responsable de IA</h1>
+    <h1>🚦 Semáforo de uso responsable de IA</h1>
     <p class="subtitle">Referencia rápida para eventos, conversaciones 1 a 1, mantenimiento y guardias</p>
   </header>
 

@@ -6,34 +6,34 @@
 <title>Canvas de intervención residencial</title>
 <style>
   :root{
-    --ink:#1E2A32;
-    --ink-soft:#57646B;
-    --paper:#F6F3EC;
+    --ink:#21232B;
+    --ink-soft:#5B5B66;
+    --paper:#FFF6E9;
     --card:#FFFFFF;
-    --line:#E4DED2;
-    --teal:#2F6F6B;
-    --teal-dark:#24534F;
-    --teal-soft:#E3EEEC;
-    --gold:#C79A3D;
-    --gold-soft:#F5EAD2;
+    --line:#EAD9C2;
+    --coral:#FF6B4A;
+    --coral-dark:#E24F30;
+    --yellow:#FFC93C;
+    --teal:#2FB8A6;
+    --teal-dark:#229184;
   }
   *{box-sizing:border-box;}
   body{font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif; margin:0; padding:0; background:var(--paper); color:var(--ink);}
-  .topbar{height:5px; background:linear-gradient(90deg, var(--teal), var(--gold));}
+  .topbar{height:6px; background:linear-gradient(90deg, var(--coral), var(--yellow), var(--teal));}
   .container{max-width:960px; margin:0 auto; padding:32px 24px 12px;}
   .brand-bar{display:flex; align-items:center; gap:10px; margin-bottom:22px;}
-  .brand-mark{background:var(--teal); color:#fff; font-weight:bold; font-size:12px; letter-spacing:.5px; padding:5px 9px; border-radius:6px;}
-  .brand-name{color:var(--ink-soft); font-size:13px; font-weight:bold; letter-spacing:.3px;}
+  .brand-mark{background:var(--teal); color:#fff; font-weight:800; font-size:12px; letter-spacing:.5px; padding:5px 10px; border-radius:10px;}
+  .brand-name{color:var(--ink-soft); font-size:13px; font-weight:800; letter-spacing:.3px;}
   header{text-align:center; margin-bottom:26px;}
-  .kicker{color:var(--teal); font-weight:bold; letter-spacing:1px; text-transform:uppercase; font-size:12.5px; margin-bottom:6px;}
-  h1{font-family:Georgia,'Iowan Old Style','Palatino Linotype','Book Antiqua',serif; color:var(--ink); margin:0 0 6px; font-size:30px;}
+  .kicker{color:var(--teal); font-weight:800; letter-spacing:1px; text-transform:uppercase; font-size:12.5px; margin-bottom:6px;}
+  h1{font-weight:900; letter-spacing:-.5px; color:var(--ink); margin:0 0 6px; font-size:32px;}
   header p.subtitle{margin:0; color:var(--ink-soft); font-size:15px;}
-  .card{background:var(--card); border-radius:14px; box-shadow:0 10px 24px rgba(30,42,50,.08); padding:22px; margin-bottom:20px;}
-  .card h2{margin-top:0; font-family:Georgia,'Iowan Old Style',serif; color:var(--ink); font-size:19px; border-bottom:2px solid var(--teal-soft); padding-bottom:10px;}
+  .card{background:var(--card); border-radius:22px; border:2.5px solid var(--ink); box-shadow:6px 6px 0 rgba(33,35,43,.08); padding:22px; margin-bottom:20px;}
+  .card h2{margin-top:0; font-weight:800; color:var(--ink); font-size:19px; border-bottom:3px solid var(--yellow); padding-bottom:10px; display:inline-block;}
   .meta-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); gap:14px;}
-  label{display:block; font-weight:bold; margin-bottom:4px; font-size:13.5px; color:var(--ink);}
+  label{display:block; font-weight:800; margin-bottom:4px; font-size:13.5px; color:var(--ink);}
   input[type=text], input[type=date], select, textarea{
-    width:100%; padding:10px; border:1px solid var(--line); border-radius:8px;
+    width:100%; padding:10px; border:2px solid var(--line); border-radius:12px;
     font-family:inherit; font-size:14px; background:#fff; color:var(--ink);
   }
   input:focus, select:focus, textarea:focus{outline:none; border-color:var(--teal);}
@@ -41,27 +41,27 @@
   .field{margin-bottom:14px;}
   .canvas-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
   @media (max-width:640px){ .canvas-grid{grid-template-columns:1fr;} }
-  .box{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px; box-shadow:0 6px 16px rgba(30,42,50,.05);}
-  .box h3{margin:0 0 4px; font-family:Georgia,'Iowan Old Style',serif; color:var(--ink); font-size:16px;}
+  .box{background:var(--card); border:2.5px solid var(--ink); border-radius:20px; padding:18px; box-shadow:5px 5px 0 rgba(33,35,43,.07);}
+  .box h3{margin:0 0 4px; font-weight:800; color:var(--ink); font-size:16px;}
   .box .hint{color:var(--ink-soft); font-size:12px; margin:0 0 8px;}
   .actions{display:flex; gap:10px; flex-wrap:wrap; margin:20px 0 10px;}
   button{
-    background:var(--teal); color:#fff; border:none; padding:12px 20px; border-radius:999px;
-    cursor:pointer; font-size:14.5px; font-weight:bold; transition:background .2s;
+    background:var(--coral); color:#fff; border:2.5px solid var(--ink); padding:12px 22px; border-radius:999px;
+    cursor:pointer; font-size:14.5px; font-weight:800; transition:transform .1s, background .2s;
   }
-  button:hover{background:var(--teal-dark);}
-  button.secondary{background:transparent; color:var(--ink-soft); border:1px solid var(--line);}
-  button.secondary:hover{background:var(--teal-soft); color:var(--ink);}
+  button:hover{background:var(--coral-dark); transform:translateY(-1px);}
+  button.secondary{background:transparent; color:var(--ink-soft); border:2px solid var(--line);}
+  button.secondary:hover{background:#fff; color:var(--ink); border-color:var(--ink);}
   .print-value{display:none;}
-  .site-footer{max-width:960px; margin:34px auto 18px; padding-top:18px; border-top:1px solid var(--line); text-align:center; color:var(--ink-soft); font-size:12px; line-height:1.7;}
+  .site-footer{max-width:960px; margin:34px auto 18px; padding-top:18px; border-top:2px solid var(--line); text-align:center; color:var(--ink-soft); font-size:12px; line-height:1.7;}
   .site-footer p{margin:2px 0;}
-  .site-footer a{color:var(--teal);}
-  .site-footer-brand{font-weight:bold; color:var(--ink); display:flex; align-items:center; justify-content:center; gap:8px;}
+  .site-footer a{color:var(--teal); font-weight:700;}
+  .site-footer-brand{font-weight:800; color:var(--ink); display:flex; align-items:center; justify-content:center; gap:8px;}
 
   @media print{
     body{background:#fff;}
     .no-print{display:none !important;}
-    .card, .box{box-shadow:none; border:1px solid #ccc; page-break-inside:avoid;}
+    .card, .box{box-shadow:none; border:1.5px solid #999; page-break-inside:avoid;}
     .canvas-grid{grid-template-columns:1fr 1fr;}
     textarea, input, select{display:none;}
     .print-value{display:block; white-space:pre-wrap; border:1px solid #ccc; border-radius:6px; padding:8px; font-size:13px; min-height:18px;}
@@ -74,7 +74,7 @@
   <div class="brand-bar"><span class="brand-mark">DC·IA</span><span class="brand-name">Diseñar comunidad con IA</span></div>
   <header>
     <p class="kicker">Prefectura · MentorIA</p>
-    <h1>Canvas de intervención residencial</h1>
+    <h1>📋 Canvas de intervención residencial</h1>
     <p class="subtitle">De evento a buena práctica documentada</p>
   </header>
 
@@ -145,7 +145,7 @@
     <button onclick="window.print()">🖨️ Descargar como PDF</button>
     <button class="secondary" onclick="limpiarFormulario()">Limpiar formulario</button>
   </div>
-  <p class="hint no-print" style="text-align:center; color:var(--ink-soft);">Al imprimir, elige "Guardar como PDF" como destino. Este canvas, una vez lleno, es el insumo directo para informes semestrales, Premios LiFE, Borrego de Oro o una postulación a congreso.</p>
+  <p class="hint no-print" style="text-align:center; color:var(--ink-soft);">Al imprimir, elige "Guardar como PDF" como destino. No sabemos qué formato exacto pida cada informe, postulación o convocatoria — piensa este canvas como punto de partida: un resumen ya ordenado que puedes retomar y adaptar para cualquier informe o portafolio de evidencias que necesites construir después.</p>
 
   <footer class="site-footer">
     <p class="site-footer-brand"><span class="brand-mark">DC·IA</span> Diseñar comunidad con IA — Taller de Prefectura</p>
