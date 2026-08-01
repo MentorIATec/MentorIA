@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recursos de prefectura · MentorIA</title>
+<meta name="description" content="Plantillas HTML reutilizables para diseñar comunidad con Design Thinking + IA: mapa de contexto, canvas de intervención, constructor de prompts C.O.P.I.L.O.T.O. y semáforo de uso responsable.">
+<meta name="theme-color" content="#FF6B4A">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta property="og:title" content="Recursos de prefectura · Diseñar comunidad con IA">
+<meta property="og:description" content="Plantillas offline para diseñar comunidad con Design Thinking + IA en residencias.">
+<meta property="og:type" content="website">
+<style>
+  :root{
+    --ink:#21232B;
+    --ink-soft:#5B5B66;
+    --paper:#FFF6E9;
+    --card:#FFFFFF;
+    --line:#EAD9C2;
+    --coral:#FF6B4A;
+    --coral-dark:#E24F30;
+    --yellow:#FFC93C;
+    --teal:#2FB8A6;
+    --teal-dark:#229184;
+  }
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif; margin:0; padding:0; background:var(--paper); color:var(--ink);}
+  .topbar{height:6px; background:linear-gradient(90deg, var(--coral), var(--yellow), var(--teal));}
+  .container{max-width:860px; margin:0 auto; padding:32px 24px 12px;}
+  .brand-bar{display:flex; align-items:center; gap:10px; margin-bottom:22px;}
+  .brand-mark{background:var(--teal); color:#fff; font-weight:800; font-size:12px; letter-spacing:.5px; padding:5px 10px; border-radius:10px;}
+  .brand-name{color:var(--ink-soft); font-size:13px; font-weight:800; letter-spacing:.3px;}
+  header{text-align:center; margin-bottom:24px;}
+  .kicker{color:var(--teal); font-weight:800; letter-spacing:1px; text-transform:uppercase; font-size:12.5px; margin-bottom:6px;}
+  h1{font-weight:900; letter-spacing:-.5px; color:var(--ink); margin:0 0 6px; font-size:32px;}
+  header p.subtitle{margin:0; color:var(--ink-soft); font-size:15px;}
+  .grid{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  @media (max-width:640px){ .grid{grid-template-columns:1fr;} }
+  .tool{background:var(--card); border-radius:22px; border:2.5px solid var(--ink); box-shadow:6px 6px 0 rgba(33,35,43,.08); padding:22px; display:flex; flex-direction:column;}
+  .tool h2{margin:0 0 8px; font-weight:800; color:var(--ink); font-size:17px;}
+  .tool p{color:var(--ink-soft); font-size:14px; flex-grow:1;}
+  .tool a{
+    display:inline-block; margin-top:10px; background:var(--coral); color:#fff; text-decoration:none;
+    border:2.5px solid var(--ink); padding:10px 18px; border-radius:999px; font-size:14px; font-weight:800; text-align:center;
+  }
+  .tool a:hover{background:var(--coral-dark);}
+  .note{background:#FFF1D6; border:2.5px solid var(--ink); border-radius:18px; padding:14px 18px; margin:24px 0; font-size:14px; color:var(--ink);}
+  .site-footer{max-width:860px; margin:34px auto 18px; padding-top:18px; border-top:2px solid var(--line); text-align:center; color:var(--ink-soft); font-size:12px; line-height:1.7;}
+  .site-footer p{margin:2px 0;}
+  .site-footer a{color:var(--teal); font-weight:700;}
+  .site-footer-brand{font-weight:800; color:var(--ink); display:flex; align-items:center; justify-content:center; gap:8px;}
+</style>
+</head>
+<body>
+<div class="topbar"></div>
+<div class="container">
+  <div class="brand-bar"><span class="brand-mark">DC·IA</span><span class="brand-name">Diseñar comunidad con IA</span></div>
+  <header>
+    <p class="kicker">Prefectura · MentorIA</p>
+    <h1>Recursos de prefectura</h1>
+    <p class="subtitle">Plantillas reutilizables para diseñar comunidad con Design Thinking + IA</p>
+  </header>
+
+  <div class="grid">
+    <div class="tool">
+      <h2>🖥️ Presentación del taller</h2>
+      <p>Diapositivas de apoyo para los 90 minutos: agenda, retos, fórmula C.O.P.I.L.O.T.O. y enlaces directos a cada plantilla. Navega con flechas del teclado.</p>
+      <a href="presentacion-taller.html">Abrir presentación</a>
+    </div>
+    <div class="tool">
+      <h2>🧭 Mapa de contexto mínimo</h2>
+      <p>Empatía antes que prompting: quién es la persona, qué situación vive, qué necesita y qué pregunta de diseño se genera.</p>
+      <a href="mapa-contexto.html">Abrir plantilla</a>
+    </div>
+    <div class="tool">
+      <h2>📋 Canvas de intervención residencial</h2>
+      <p>Las 10 preguntas para convertir un evento o intervención en evidencia documentada: reto, participación, resultado, aprendizaje y transferibilidad.</p>
+      <a href="canvas-intervencion-residencial.html">Abrir plantilla</a>
+    </div>
+    <div class="tool">
+      <h2>🤖 Constructor de prompts C.O.P.I.L.O.T.O.</h2>
+      <p>Arma un prompt completo campo por campo y cópialo, más una biblioteca de 5 prompts listos para eventos, conversaciones, comunicación, mantenimiento y documentación.</p>
+      <a href="copiloto-prompts.html">Abrir plantilla</a>
+    </div>
+    <div class="tool">
+      <h2>🚦 Semáforo de uso responsable</h2>
+      <p>Referencia de una página: qué es seguro darle a una IA, qué hay que verificar y qué nunca debe compartirse.</p>
+      <a href="semaforo-ia.html">Abrir plantilla</a>
+    </div>
+  </div>
+
+  <div class="note">
+    <strong>Cómo usarlas:</strong> ábrelas en cualquier navegador (con o sin internet), llénalas desde tu laptop,
+    y usa el botón "Descargar como PDF" de cada una (elige "Guardar como PDF" en el diálogo de impresión).
+    Nada se sube a un servidor: los datos se guardan solo en el navegador de esa computadora mientras trabajas.
+    Son reutilizables cada semestre, para cualquier piso, comunidad o actividad nueva.
+  </div>
+
+  <footer class="site-footer">
+    <p class="site-footer-brand"><span class="brand-mark">DC·IA</span> Diseñar comunidad con IA · Taller de Prefectura</p>
+    <p>Tecnológico de Monterrey, Campus Monterrey</p>
+    <p>© 2026 Karen Ariadna Guzmán Vega · <a href="mailto:kareng@tec.mx">kareng@tec.mx</a></p>
+    <p>Contenido bajo licencia <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a>: puede adaptarse citando a la autora, sin fines comerciales, compartiendo bajo la misma licencia.</p>
+    <p>Ver también <a href="README.md">README.md</a> y <a href="BRANDING.md">BRANDING.md</a></p>
+  </footer>
+</div>
+</body>
+</html>

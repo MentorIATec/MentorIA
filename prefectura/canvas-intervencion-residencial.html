@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Canvas de intervención residencial · Diseñar comunidad con IA</title>
+<meta name="description" content="Las 10 preguntas para documentar una intervención residencial: reto, evidencia, participación, resultado, aprendizaje y transferibilidad.">
+<meta name="theme-color" content="#FF6B4A">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta property="og:title" content="Canvas de intervención residencial · Diseñar comunidad con IA">
+<meta property="og:description" content="De evento a buena práctica documentada, con espacio para registrar el uso de IA.">
+<meta property="og:type" content="website">
+<style>
+  :root{
+    --ink:#21232B;
+    --ink-soft:#5B5B66;
+    --paper:#FFF6E9;
+    --card:#FFFFFF;
+    --line:#EAD9C2;
+    --coral:#FF6B4A;
+    --coral-dark:#E24F30;
+    --yellow:#FFC93C;
+    --teal:#2FB8A6;
+    --teal-dark:#229184;
+  }
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif; margin:0; padding:0; background:var(--paper); color:var(--ink);}
+  .topbar{height:6px; background:linear-gradient(90deg, var(--coral), var(--yellow), var(--teal));}
+  .container{max-width:960px; margin:0 auto; padding:32px 24px 12px;}
+  .brand-bar{display:flex; align-items:center; gap:10px; margin-bottom:22px;}
+  .brand-mark{background:var(--teal); color:#fff; font-weight:800; font-size:12px; letter-spacing:.5px; padding:5px 10px; border-radius:10px;}
+  .brand-name{color:var(--ink-soft); font-size:13px; font-weight:800; letter-spacing:.3px;}
+  header{text-align:center; margin-bottom:26px;}
+  .kicker{color:var(--teal); font-weight:800; letter-spacing:1px; text-transform:uppercase; font-size:12.5px; margin-bottom:6px;}
+  h1{font-weight:900; letter-spacing:-.5px; color:var(--ink); margin:0 0 6px; font-size:32px;}
+  header p.subtitle{margin:0; color:var(--ink-soft); font-size:15px;}
+  .card{background:var(--card); border-radius:22px; border:2.5px solid var(--ink); box-shadow:6px 6px 0 rgba(33,35,43,.08); padding:22px; margin-bottom:20px;}
+  .card h2{margin-top:0; font-weight:800; color:var(--ink); font-size:19px; border-bottom:3px solid var(--yellow); padding-bottom:10px; display:inline-block;}
+  .meta-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); gap:14px;}
+  label{display:block; font-weight:800; margin-bottom:4px; font-size:13.5px; color:var(--ink);}
+  input[type=text], input[type=date], select, textarea{
+    width:100%; padding:10px; border:2px solid var(--line); border-radius:12px;
+    font-family:inherit; font-size:14px; background:#fff; color:var(--ink);
+  }
+  input:focus, select:focus, textarea:focus{outline:none; border-color:var(--teal);}
+  textarea{resize:vertical; min-height:70px;}
+  .field{margin-bottom:14px;}
+  .canvas-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  @media (max-width:640px){ .canvas-grid{grid-template-columns:1fr;} }
+  .box{background:var(--card); border:2.5px solid var(--ink); border-radius:20px; padding:18px; box-shadow:5px 5px 0 rgba(33,35,43,.07);}
+  .box h3{margin:0 0 4px; font-weight:800; color:var(--ink); font-size:16px;}
+  .box .hint{color:var(--ink-soft); font-size:12px; margin:0 0 8px;}
+  .actions{display:flex; gap:10px; flex-wrap:wrap; margin:20px 0 10px;}
+  button{
+    background:var(--coral); color:#fff; border:2.5px solid var(--ink); padding:12px 22px; border-radius:999px;
+    cursor:pointer; font-size:14.5px; font-weight:800; transition:transform .1s, background .2s;
+  }
+  button:hover{background:var(--coral-dark); transform:translateY(-1px);}
+  button.secondary{background:transparent; color:var(--ink-soft); border:2px solid var(--line);}
+  button.secondary:hover{background:#fff; color:var(--ink); border-color:var(--ink);}
+  .print-value{display:none;}
+  .site-footer{max-width:960px; margin:34px auto 18px; padding-top:18px; border-top:2px solid var(--line); text-align:center; color:var(--ink-soft); font-size:12px; line-height:1.7;}
+  .site-footer p{margin:2px 0;}
+  .site-footer a{color:var(--teal); font-weight:700;}
+  .site-footer-brand{font-weight:800; color:var(--ink); display:flex; align-items:center; justify-content:center; gap:8px;}
+
+  @media print{
+    body{background:#fff;}
+    .no-print{display:none !important;}
+    .card, .box{box-shadow:none; border:1.5px solid #999; page-break-inside:avoid;}
+    .canvas-grid{grid-template-columns:1fr 1fr;}
+    textarea, input, select{display:none;}
+    .print-value{display:block; white-space:pre-wrap; border:1px solid #ccc; border-radius:6px; padding:8px; font-size:13px; min-height:18px;}
+  }
+</style>
+</head>
+<body>
+<div class="topbar"></div>
+<div class="container">
+  <div class="brand-bar"><span class="brand-mark">DC·IA</span><span class="brand-name">Diseñar comunidad con IA</span></div>
+  <header>
+    <p class="kicker">Prefectura · MentorIA</p>
+    <h1>📋 Canvas de intervención residencial</h1>
+    <p class="subtitle">De evento a buena práctica documentada</p>
+  </header>
+
+  <div class="card">
+    <h2>Datos generales</h2>
+    <div class="meta-grid">
+      <div class="field"><label>Prefecto/a</label><input type="text" id="nombre"></div>
+      <div class="field"><label>Piso o comunidad</label><input type="text" id="piso"></div>
+      <div class="field"><label>Fecha</label><input type="date" id="fecha"></div>
+      <div class="field"><label>Nombre de la intervención</label><input type="text" id="intervencion-nombre"></div>
+    </div>
+  </div>
+
+  <div class="canvas-grid">
+    <div class="box">
+      <h3>1. Reto observado</h3>
+      <p class="hint">¿Qué necesidad intentamos atender?</p>
+      <textarea id="c1"></textarea>
+    </div>
+    <div class="box">
+      <h3>2. Evidencia inicial</h3>
+      <p class="hint">¿Cómo sabemos que existe?</p>
+      <textarea id="c2"></textarea>
+    </div>
+    <div class="box">
+      <h3>3. Población</h3>
+      <p class="hint">¿Quiénes están involucrados y qué diferencias debemos considerar?</p>
+      <textarea id="c3"></textarea>
+    </div>
+    <div class="box">
+      <h3>4. Intervención</h3>
+      <p class="hint">¿Qué hicimos y por qué?</p>
+      <textarea id="c4"></textarea>
+    </div>
+    <div class="box">
+      <h3>5. Participación</h3>
+      <p class="hint">¿Cuántas personas asistieron y qué perfiles estuvieron representados?</p>
+      <textarea id="c5"></textarea>
+    </div>
+    <div class="box">
+      <h3>6. Resultado de comunidad</h3>
+      <p class="hint">¿Qué cambió en conexiones, confianza, pertenencia, conocimiento de recursos o colaboración?</p>
+      <textarea id="c6"></textarea>
+    </div>
+    <div class="box">
+      <h3>7. Evidencia</h3>
+      <p class="hint">¿Qué datos, testimonios anonimizados u observaciones lo respaldan?</p>
+      <textarea id="c7"></textarea>
+    </div>
+    <div class="box">
+      <h3>8. Aprendizaje</h3>
+      <p class="hint">¿Qué funcionó, qué no y qué adaptaríamos?</p>
+      <textarea id="c8"></textarea>
+    </div>
+    <div class="box">
+      <h3>9. Transferibilidad</h3>
+      <p class="hint">¿Cómo podría replicarse en otro piso, residencia o institución?</p>
+      <textarea id="c9"></textarea>
+    </div>
+    <div class="box">
+      <h3>10. Uso de IA</h3>
+      <p class="hint">¿En qué etapas se utilizó, qué aportó y qué decisiones permanecieron bajo responsabilidad humana?</p>
+      <textarea id="c10"></textarea>
+    </div>
+  </div>
+
+  <div class="actions no-print">
+    <button onclick="window.print()">🖨️ Descargar como PDF</button>
+    <button class="secondary" onclick="limpiarFormulario()">Limpiar formulario</button>
+  </div>
+  <p class="hint no-print" style="text-align:center; color:var(--ink-soft);">Al imprimir, elige "Guardar como PDF" como destino. Llenar este canvas al cerrar cada intervención te ahorra el problema de recordar cifras y detalles meses después, cuando llegue la convocatoria o el informe semestral: ya tendrás un resumen ordenado, listo para adaptar al formato que te pidan.</p>
+
+  <footer class="site-footer">
+    <p class="site-footer-brand"><span class="brand-mark">DC·IA</span> Diseñar comunidad con IA · Taller de Prefectura</p>
+    <p>Tecnológico de Monterrey, Campus Monterrey</p>
+    <p>© 2026 Karen Ariadna Guzmán Vega · <a href="mailto:kareng@tec.mx">kareng@tec.mx</a></p>
+    <p>Contenido bajo licencia <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a>: puede adaptarse citando a la autora, sin fines comerciales, compartiendo bajo la misma licencia.</p>
+  </footer>
+</div>
+
+<script>
+const STORAGE_KEY = 'prefectura_canvas_intervencion';
+const fieldIds = ['nombre','piso','fecha','intervencion-nombre','c1','c2','c3','c4','c5','c6','c7','c8','c9','c10'];
+
+function guardar(){
+  const data = {};
+  fieldIds.forEach(id => data[id] = document.getElementById(id).value);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+}
+
+function cargar(){
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if(!raw) return;
+  try{
+    const data = JSON.parse(raw);
+    fieldIds.forEach(id => { if(data[id] !== undefined) document.getElementById(id).value = data[id]; });
+  }catch(e){}
+}
+
+function limpiarFormulario(){
+  if(!confirm('¿Borrar todo el contenido de este formulario?')) return;
+  fieldIds.forEach(id => document.getElementById(id).value = '');
+  localStorage.removeItem(STORAGE_KEY);
+}
+
+fieldIds.forEach(id => document.getElementById(id).addEventListener('input', guardar));
+
+function prepararImpresion(){
+  document.querySelectorAll('textarea, input[type=text], input[type=date]').forEach(el => {
+    const div = document.createElement('div');
+    div.className = 'print-value';
+    div.textContent = el.value && el.value.trim() ? el.value : '—';
+    el.insertAdjacentElement('afterend', div);
+  });
+}
+function restaurarDespuesDeImprimir(){
+  document.querySelectorAll('.print-value').forEach(d => d.remove());
+}
+window.addEventListener('beforeprint', prepararImpresion);
+window.addEventListener('afterprint', restaurarDespuesDeImprimir);
+
+cargar();
+</script>
+</body>
+</html>

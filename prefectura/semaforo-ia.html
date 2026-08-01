@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semáforo de uso responsable de IA · Prefectura</title>
+<meta name="description" content="Referencia rápida de qué es seguro compartir con una IA, qué revisar antes de usar y qué nunca debe introducirse en prefectura.">
+<meta name="theme-color" content="#FF6B4A">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta property="og:title" content="Semáforo de uso responsable de IA · Prefectura">
+<meta property="og:description" content="Verde, amarillo y rojo: qué compartir con una IA y qué nunca compartir.">
+<meta property="og:type" content="website">
+<style>
+  :root{
+    --ink:#21232B;
+    --ink-soft:#5B5B66;
+    --paper:#FFF6E9;
+    --card:#FFFFFF;
+    --line:#EAD9C2;
+    --coral:#FF6B4A;
+    --coral-dark:#E24F30;
+    --yellow:#FFC93C;
+    --teal:#2FB8A6;
+    --teal-dark:#229184;
+    --verde:#3FAE7A;
+    --amarillo:#FFC93C;
+    --rojo:#E5484D;
+  }
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif; margin:0; padding:0; background:var(--paper); color:var(--ink);}
+  .topbar{height:6px; background:linear-gradient(90deg, var(--coral), var(--yellow), var(--teal));}
+  .container{max-width:960px; margin:0 auto; padding:32px 24px 12px;}
+  .brand-bar{display:flex; align-items:center; gap:10px; margin-bottom:22px;}
+  .brand-mark{background:var(--teal); color:#fff; font-weight:800; font-size:12px; letter-spacing:.5px; padding:5px 10px; border-radius:10px;}
+  .brand-name{color:var(--ink-soft); font-size:13px; font-weight:800; letter-spacing:.3px;}
+  header{text-align:center; margin-bottom:20px;}
+  .kicker{color:var(--teal); font-weight:800; letter-spacing:1px; text-transform:uppercase; font-size:12.5px; margin-bottom:6px;}
+  h1{font-weight:900; letter-spacing:-.5px; color:var(--ink); margin:0 0 6px; font-size:30px;}
+  header p.subtitle{margin:0; color:var(--ink-soft); font-size:14.5px;}
+  .thesis{background:#FFF1D6; border:2.5px solid var(--ink); border-radius:18px; padding:14px 18px; margin-bottom:24px; font-size:15px; color:var(--ink);}
+  .semaforo{display:grid; grid-template-columns:repeat(3, 1fr); gap:16px;}
+  @media (max-width:720px){ .semaforo{grid-template-columns:1fr;} }
+  .columna{border-radius:20px; overflow:hidden; border:2.5px solid var(--ink); box-shadow:6px 6px 0 rgba(33,35,43,.08); background:var(--card);}
+  .col-header{padding:14px; text-align:center; font-weight:900; font-size:16px; color:#fff;}
+  .col-verde .col-header{background:var(--verde);}
+  .col-amarillo .col-header{background:var(--amarillo); color:#5c4500;}
+  .col-rojo .col-header{background:var(--rojo);}
+  .col-body{padding:14px 18px;}
+  .col-body ul{margin:0; padding-left:20px;}
+  .col-body li{margin-bottom:9px; font-size:14px; display:flex; align-items:flex-start; gap:8px;}
+  .col-body li input{margin-top:3px;}
+  .actions{display:flex; gap:10px; flex-wrap:wrap; margin:24px 0 10px; justify-content:center;}
+  button{
+    background:var(--coral); color:#fff; border:2.5px solid var(--ink); padding:12px 22px; border-radius:999px;
+    cursor:pointer; font-size:14.5px; font-weight:800; transition:transform .1s, background .2s;
+  }
+  button:hover{background:var(--coral-dark); transform:translateY(-1px);}
+  button.secondary{background:transparent; color:var(--ink-soft); border:2px solid var(--line);}
+  button.secondary:hover{background:#fff; color:var(--ink); border-color:var(--ink);}
+  .site-footer{max-width:960px; margin:34px auto 18px; padding-top:18px; border-top:2px solid var(--line); text-align:center; color:var(--ink-soft); font-size:12px; line-height:1.7;}
+  .site-footer p{margin:2px 0;}
+  .site-footer a{color:var(--teal); font-weight:700;}
+  .site-footer-brand{font-weight:800; color:var(--ink); display:flex; align-items:center; justify-content:center; gap:8px;}
+
+  @media print{
+    body{background:#fff;}
+    .no-print{display:none !important;}
+    .columna{box-shadow:none; border:1.5px solid #999; page-break-inside:avoid;}
+  }
+</style>
+</head>
+<body>
+<div class="topbar"></div>
+<div class="container">
+  <div class="brand-bar"><span class="brand-mark">DC·IA</span><span class="brand-name">Diseñar comunidad con IA</span></div>
+  <header>
+    <p class="kicker">Prefectura · MentorIA</p>
+    <h1>🚦 Semáforo de uso responsable de IA</h1>
+    <p class="subtitle">Referencia rápida para eventos, conversaciones 1 a 1, mantenimiento y guardias</p>
+  </header>
+
+  <div class="thesis">
+    La IA no construye comunidad. Las personas construyen comunidad. La IA puede ayudarnos a escuchar mejor,
+    generar alternativas, reducir trabajo operativo y convertir una buena práctica en evidencia compartible.
+    Nunca debe decidir por nosotros ni recibir datos personales identificables.
+  </div>
+
+  <div class="semaforo">
+    <div class="columna col-verde">
+      <div class="col-header">Verde: uso permitido</div>
+      <div class="col-body">
+        <ul>
+          <li><input type="checkbox">Ideas y lluvia de alternativas</li>
+          <li><input type="checkbox">Casos ficticios de práctica</li>
+          <li><input type="checkbox">Planeación y cronogramas</li>
+          <li><input type="checkbox">Listas de compra</li>
+          <li><input type="checkbox">Presupuestos preliminares</li>
+          <li><input type="checkbox">Mensajes de difusión</li>
+          <li><input type="checkbox">Rúbricas e indicadores</li>
+          <li><input type="checkbox">Reflexión sobre resultados anonimizados</li>
+          <li><input type="checkbox">Práctica de conversaciones simuladas</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="columna col-amarillo">
+      <div class="col-header">Amarillo: revisar y verificar</div>
+      <div class="col-body">
+        <ul>
+          <li><input type="checkbox">Información sobre servicios institucionales</li>
+          <li><input type="checkbox">Orientaciones sobre protocolos</li>
+          <li><input type="checkbox">Cálculos y presupuestos</li>
+          <li><input type="checkbox">Interpretación de encuestas</li>
+          <li><input type="checkbox">Recomendaciones para situaciones sensibles</li>
+          <li><input type="checkbox">Resúmenes de documentos institucionales</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="columna col-rojo">
+      <div class="col-header">Rojo: no introducir</div>
+      <div class="col-body">
+        <ul>
+          <li><input type="checkbox">Nombres, matrículas o habitaciones</li>
+          <li><input type="checkbox">Información médica o de salud mental</li>
+          <li><input type="checkbox">Confesiones o conversaciones privadas</li>
+          <li><input type="checkbox">Detalles identificables de conflictos</li>
+          <li><input type="checkbox">Reportes disciplinarios</li>
+          <li><input type="checkbox">Datos de emergencia</li>
+          <li><input type="checkbox">Diagnósticos o perfiles psicológicos</li>
+          <li><input type="checkbox">Decisiones sobre riesgo o canalización</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions no-print">
+    <button onclick="window.print()">🖨️ Descargar como PDF</button>
+    <button class="secondary" onclick="limpiarChecks()">Reiniciar casillas</button>
+  </div>
+  <p class="hint no-print" style="text-align:center; color:var(--ink-soft);">Las situaciones críticas o de riesgo siempre siguen los protocolos institucionales y requieren contacto humano inmediato.</p>
+
+  <footer class="site-footer">
+    <p class="site-footer-brand"><span class="brand-mark">DC·IA</span> Diseñar comunidad con IA · Taller de Prefectura</p>
+    <p>Tecnológico de Monterrey, Campus Monterrey</p>
+    <p>© 2026 Karen Ariadna Guzmán Vega · <a href="mailto:kareng@tec.mx">kareng@tec.mx</a></p>
+    <p>Contenido bajo licencia <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a>: puede adaptarse citando a la autora, sin fines comerciales, compartiendo bajo la misma licencia.</p>
+  </footer>
+</div>
+
+<script>
+const STORAGE_KEY = 'prefectura_semaforo_checks';
+const checkboxes = Array.from(document.querySelectorAll('input[type=checkbox]'));
+
+checkboxes.forEach((cb, idx) => {
+  cb.dataset.idx = idx;
+  cb.addEventListener('change', guardar);
+});
+
+function guardar(){
+  const estado = checkboxes.map(cb => cb.checked);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(estado));
+}
+
+function cargar(){
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if(!raw) return;
+  try{
+    const estado = JSON.parse(raw);
+    checkboxes.forEach((cb, idx) => cb.checked = !!estado[idx]);
+  }catch(e){}
+}
+
+function limpiarChecks(){
+  checkboxes.forEach(cb => cb.checked = false);
+  localStorage.removeItem(STORAGE_KEY);
+}
+
+cargar();
+</script>
+</body>
+</html>

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Constructor de prompts C.O.P.I.L.O.T.O. · Diseñar comunidad con IA</title>
+<meta name="description" content="Arma prompts completos con la fórmula C.O.P.I.L.O.T.O. y una biblioteca de 5 prompts listos para eventos, conversaciones, comunicación, mantenimiento y documentación.">
+<meta name="theme-color" content="#FF6B4A">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta property="og:title" content="Constructor de prompts C.O.P.I.L.O.T.O.">
+<meta property="og:description" content="Arma y copia prompts completos para prefectura, campo por campo.">
+<meta property="og:type" content="website">
+<style>
+  :root{
+    --ink:#21232B;
+    --ink-soft:#5B5B66;
+    --paper:#FFF6E9;
+    --card:#FFFFFF;
+    --line:#EAD9C2;
+    --coral:#FF6B4A;
+    --coral-dark:#E24F30;
+    --yellow:#FFC93C;
+    --teal:#2FB8A6;
+    --teal-dark:#229184;
+    --verde:#3FAE7A;
+    --amarillo:#FFC93C;
+    --rojo:#E5484D;
+  }
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif; margin:0; padding:0; background:var(--paper); color:var(--ink);}
+  .topbar{height:6px; background:linear-gradient(90deg, var(--coral), var(--yellow), var(--teal));}
+  .container{max-width:860px; margin:0 auto; padding:32px 24px 12px;}
+  .brand-bar{display:flex; align-items:center; gap:10px; margin-bottom:22px;}
+  .brand-mark{background:var(--teal); color:#fff; font-weight:800; font-size:12px; letter-spacing:.5px; padding:5px 10px; border-radius:10px;}
+  .brand-name{color:var(--ink-soft); font-size:13px; font-weight:800; letter-spacing:.3px;}
+  header{text-align:center; margin-bottom:20px;}
+  .kicker{color:var(--teal); font-weight:800; letter-spacing:1px; text-transform:uppercase; font-size:12.5px; margin-bottom:6px;}
+  h1{font-weight:900; letter-spacing:-.5px; color:var(--ink); margin:0 0 6px; font-size:30px;}
+  header p.subtitle{margin:0; color:var(--ink-soft); font-size:14.5px;}
+  .banner{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom:20px; font-size:12.5px;}
+  .banner span{padding:6px 14px; border-radius:20px; color:#fff; font-weight:800; border:2px solid var(--ink);}
+  .banner .g{background:var(--verde);} .banner .y{background:var(--amarillo); color:#5c4500;} .banner .r{background:var(--rojo);}
+  .card{background:var(--card); border-radius:22px; border:2.5px solid var(--ink); box-shadow:6px 6px 0 rgba(33,35,43,.08); padding:22px; margin-bottom:20px;}
+  .card h2{margin-top:0; font-weight:800; color:var(--ink); font-size:19px; border-bottom:3px solid var(--yellow); padding-bottom:10px; display:inline-block;}
+  .letra-grid{display:grid; grid-template-columns:1fr; gap:14px;}
+  .letra{display:grid; grid-template-columns:52px 1fr; gap:12px; align-items:start;}
+  .letra:nth-child(odd) .badge{background:var(--teal);}
+  .letra:nth-child(even) .badge{background:var(--yellow); color:var(--ink);}
+  .letra .badge{
+    color:#fff; border-radius:14px; width:44px; height:44px; border:2.5px solid var(--ink);
+    display:flex; align-items:center; justify-content:center; font-weight:900; font-size:18px;
+  }
+  label{display:block; font-weight:800; margin-bottom:4px; font-size:13.5px; color:var(--ink);}
+  .hint{color:var(--ink-soft); font-size:12px; margin:0 0 6px;}
+  textarea, input[type=text]{
+    width:100%; padding:10px; border:2px solid var(--line); border-radius:12px;
+    font-family:inherit; font-size:14px; background:#fff; resize:vertical; color:var(--ink);
+  }
+  textarea:focus, input:focus{outline:none; border-color:var(--teal);}
+  textarea{min-height:50px;}
+  #prompt-generado{
+    width:100%; min-height:180px; border:2.5px dashed var(--teal); border-radius:16px; padding:14px;
+    font-family:inherit; font-size:14px; background:#EAFAF6; white-space:pre-wrap; color:var(--ink);
+  }
+  .actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; align-items:center;}
+  button{
+    background:var(--coral); color:#fff; border:2.5px solid var(--ink); padding:11px 20px; border-radius:999px;
+    cursor:pointer; font-size:13.5px; font-weight:800; transition:transform .1s, background .2s;
+  }
+  button:hover{background:var(--coral-dark); transform:translateY(-1px);}
+  button.secondary{background:transparent; color:var(--ink-soft); border:2px solid var(--line);}
+  button.secondary:hover{background:#fff; color:var(--ink); border-color:var(--ink);}
+  button.small{padding:6px 14px; font-size:12.5px;}
+  .biblioteca-item{border:2.5px solid var(--ink); border-radius:18px; padding:16px; margin-bottom:14px; background:#fffdf8;}
+  .biblioteca-item h3{margin:0 0 6px; font-weight:800; color:var(--ink); font-size:15.5px;}
+  .biblioteca-item pre{white-space:pre-wrap; font-family:inherit; font-size:13.5px; margin:0 0 10px; color:var(--ink);}
+  .copiado{color:var(--teal-dark); font-size:12px; font-weight:800; margin-left:8px;}
+  .print-value{display:none;}
+  .site-footer{max-width:860px; margin:34px auto 18px; padding-top:18px; border-top:2px solid var(--line); text-align:center; color:var(--ink-soft); font-size:12px; line-height:1.7;}
+  .site-footer p{margin:2px 0;}
+  .site-footer a{color:var(--teal); font-weight:700;}
+  .site-footer-brand{font-weight:800; color:var(--ink); display:flex; align-items:center; justify-content:center; gap:8px;}
+
+  @media print{
+    body{background:#fff;}
+    .no-print{display:none !important;}
+    .card, .biblioteca-item{box-shadow:none; border:1.5px solid #999; page-break-inside:avoid;}
+    textarea, input{display:none;}
+    .print-value{display:block; white-space:pre-wrap; border:1px solid #ccc; border-radius:6px; padding:8px; font-size:13px; min-height:18px;}
+    #prompt-generado{display:block;}
+  }
+</style>
+</head>
+<body>
+<div class="topbar"></div>
+<div class="container">
+  <div class="brand-bar"><span class="brand-mark">DC·IA</span><span class="brand-name">Diseñar comunidad con IA</span></div>
+  <header>
+    <p class="kicker">Prefectura · MentorIA</p>
+    <h1>🤖 Constructor de prompts C.O.P.I.L.O.T.O.</h1>
+    <p class="subtitle">Contexto · Objetivo · Personas · Información · Límites · Opciones · Tarea · Observación crítica</p>
+  </header>
+
+  <div class="banner no-print">
+    <span class="g">Verde: ideas, planeación, cronogramas</span>
+    <span class="y">Amarillo: revisar antes de usar</span>
+    <span class="r">Rojo: nunca nombres, matrículas, datos de salud</span>
+  </div>
+
+  <div class="card">
+    <h2>Arma tu prompt</h2>
+    <div class="letra-grid">
+      <div class="letra">
+        <div class="badge">C</div>
+        <div>
+          <label>Contexto: ¿dónde ocurre y quiénes participan?</label>
+          <textarea id="l-c" placeholder="ej. Somos prefectos de un piso de 80 residentes, foráneos, con perfiles distintos incluyendo borregos de alto rendimiento."></textarea>
+        </div>
+      </div>
+      <div class="letra">
+        <div class="badge">O</div>
+        <div>
+          <label>Objetivo: ¿qué necesitamos conseguir?</label>
+          <textarea id="l-o" placeholder="ej. Aumentar las conexiones entre personas que aún no se conocen."></textarea>
+        </div>
+      </div>
+      <div class="letra">
+        <div class="badge">P</div>
+        <div>
+          <label>Personas: ¿qué diferencias y necesidades debemos considerar?</label>
+          <textarea id="l-p" placeholder="ej. Horarios de entrenamiento, estudiantes foráneos, distintos semestres y carreras."></textarea>
+        </div>
+      </div>
+      <div class="letra">
+        <div class="badge">I</div>
+        <div>
+          <label>Información disponible: ¿qué sabemos realmente?</label>
+          <textarea id="l-i" placeholder="ej. Solo 15 de 80 residentes participan regularmente en actividades."></textarea>
+        </div>
+      </div>
+      <div class="letra">
+        <div class="badge">L</div>
+        <div>
+          <label>Límites: ¿qué restricciones, políticas o riesgos existen?</label>
+          <textarea id="l-l" placeholder="ej. Presupuesto máximo $3,000 MXN, 90 minutos, dos semanas para organizar, sin datos personales identificables."></textarea>
+        </div>
+      </div>
+      <div class="letra">
+        <div class="badge">O</div>
+        <div>
+          <label>Opciones: ¿una idea o varias alternativas comparables?</label>
+          <textarea id="l-o2" placeholder="ej. Genera 5 conceptos distintos y compáralos."></textarea>
+        </div>
+      </div>
+      <div class="letra">
+        <div class="badge">T</div>
+        <div>
+          <label>Tarea concreta: ¿qué debe producir la herramienta?</label>
+          <textarea id="l-t" placeholder="ej. Para cada concepto: necesidad atendida, dinámica, materiales, presupuesto, difusión, indicadores de comunidad."></textarea>
+        </div>
+      </div>
+      <div class="letra">
+        <div class="badge">O</div>
+        <div>
+          <label>Observación crítica: ¿cómo evaluaremos o cuestionaremos la respuesta?</label>
+          <textarea id="l-o3" placeholder="ej. Después, cuestiona las debilidades de cada propuesta y qué perfiles podrían quedar excluidos."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions no-print">
+      <button onclick="generarPrompt()">Generar prompt</button>
+      <button class="secondary" onclick="copiarPrompt()">Copiar al portapapeles</button>
+      <span id="copiado-msg" class="copiado" style="display:none;">¡Copiado!</span>
+    </div>
+
+    <p class="hint" style="margin-top:14px;">Prompt generado:</p>
+    <div id="prompt-generado">Completa los campos y presiona "Generar prompt".</div>
+  </div>
+
+  <div class="card">
+    <h2>Biblioteca de 5 prompts reutilizables</h2>
+    <p class="hint">Cópialos y ajusta los datos entre corchetes antes de usarlos.</p>
+
+    <div class="biblioteca-item">
+      <h3>1. Diseño de eventos</h3>
+      <pre id="bib1">Actúa como copiloto de diseño de experiencias universitarias. Somos prefectos responsables de una comunidad residencial de [número] estudiantes con perfiles y horarios diversos. Queremos [objetivo de comunidad, no solo asistencia]. Presupuesto máximo [monto], [tiempo] de organización. Evita propuestas que requieran revelar información personal.
+
+Genera 5 conceptos distintos. Para cada uno incluye: necesidad atendida, dinámica central, barreras de participación, materiales, presupuesto aproximado, estrategia de difusión y dos indicadores de comunidad. Después cuestiona las debilidades de cada propuesta.</pre>
+      <button class="small no-print" onclick="copiarBloque('bib1', this)">Copiar</button>
+    </div>
+
+    <div class="biblioteca-item">
+      <h3>2. Práctica de conversaciones 1 a 1</h3>
+      <pre id="bib2">Ayúdame a practicar una conversación ficticia con un residente que [describe la situación, sin datos reales identificables]. Mi objetivo no es diagnosticar ni presionar, sino generar confianza, conocer cómo vive su adaptación y explicarle recursos disponibles. Simula sus respuestas y dame retroalimentación sobre mis preguntas: cuáles fueron de apertura, cuáles de profundización y cuáles de cierre.</pre>
+      <button class="small no-print" onclick="copiarBloque('bib2', this)">Copiar</button>
+    </div>
+
+    <div class="biblioteca-item">
+      <h3>3. Comunicación y promoción</h3>
+      <pre id="bib3">Redacta 3 versiones del mensaje de difusión para [nombre del evento], dirigido a residentes de [perfil/piso]. Objetivo: [objetivo]. Tono cercano, sin lenguaje infantil ni obligatorio. Versión 1 para grupo de WhatsApp, versión 2 para cartel físico, versión 3 para mensaje directo a alguien que aún no participa. Máximo [longitud] por versión.</pre>
+      <button class="small no-print" onclick="copiarBloque('bib3', this)">Copiar</button>
+    </div>
+
+    <div class="biblioteca-item">
+      <h3>4. Seguimiento de mantenimiento y guardias</h3>
+      <pre id="bib4">Organiza esta lista de reportes de mantenimiento en una tabla con columnas: descripción, categoría, urgencia (alta/media/baja), responsable sugerido y estado. No incluyas nombres ni números de habitación, solo el identificador que yo asigne. Reportes: [pega la lista anonimizada]. Al final, redacta un resumen de entrega de guardia en 5 líneas, priorizando lo urgente.</pre>
+      <button class="small no-print" onclick="copiarBloque('bib4', this)">Copiar</button>
+    </div>
+
+    <div class="biblioteca-item">
+      <h3>5. Documentación de buena práctica</h3>
+      <pre id="bib5">Con base en este canvas de intervención [pega el contenido del Canvas de intervención residencial], redacta una propuesta de presentación para un congreso de vida residencial (ej. SWACUHO). Incluye: título atractivo, resumen de 150 palabras, problema, intervención, resultados con evidencia, aprendizaje y por qué es transferible a otra institución. Tono profesional, sin exagerar resultados no comprobados.</pre>
+      <button class="small no-print" onclick="copiarBloque('bib5', this)">Copiar</button>
+    </div>
+  </div>
+
+  <div class="actions no-print" style="justify-content:center;">
+    <button onclick="window.print()">🖨️ Descargar como PDF</button>
+    <button class="secondary" onclick="limpiarFormulario()">Limpiar formulario</button>
+  </div>
+  <p class="hint no-print" style="text-align:center;">Esta plantilla no envía nada a ningún servidor: el prompt se arma en tu navegador. Revisa el semáforo de uso responsable (semaforo-ia.html) antes de pegar información en cualquier IA.</p>
+
+  <footer class="site-footer">
+    <p class="site-footer-brand"><span class="brand-mark">DC·IA</span> Diseñar comunidad con IA · Taller de Prefectura</p>
+    <p>Tecnológico de Monterrey, Campus Monterrey</p>
+    <p>© 2026 Karen Ariadna Guzmán Vega · <a href="mailto:kareng@tec.mx">kareng@tec.mx</a></p>
+    <p>Contenido bajo licencia <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a>: puede adaptarse citando a la autora, sin fines comerciales, compartiendo bajo la misma licencia.</p>
+  </footer>
+</div>
+
+<script>
+const STORAGE_KEY = 'prefectura_copiloto';
+const fieldIds = ['l-c','l-o','l-p','l-i','l-l','l-o2','l-t','l-o3'];
+
+function generarPrompt(){
+  const c = document.getElementById('l-c').value.trim();
+  const o = document.getElementById('l-o').value.trim();
+  const p = document.getElementById('l-p').value.trim();
+  const i = document.getElementById('l-i').value.trim();
+  const l = document.getElementById('l-l').value.trim();
+  const o2 = document.getElementById('l-o2').value.trim();
+  const t = document.getElementById('l-t').value.trim();
+  const o3 = document.getElementById('l-o3').value.trim();
+
+  const partes = [];
+  if(c) partes.push(c);
+  if(o) partes.push('Objetivo: ' + o);
+  if(p) partes.push('Personas a considerar: ' + p);
+  if(i) partes.push('Información disponible: ' + i);
+  if(l) partes.push('Límites y restricciones: ' + l);
+  if(o2) partes.push(o2);
+  if(t) partes.push('Tarea: ' + t);
+  if(o3) partes.push(o3);
+
+  document.getElementById('prompt-generado').textContent = partes.length
+    ? partes.join('\n\n')
+    : 'Completa al menos un campo para generar el prompt.';
+}
+
+function copiarPrompt(){
+  const texto = document.getElementById('prompt-generado').textContent;
+  navigator.clipboard.writeText(texto).then(() => mostrarCopiado());
+}
+
+function copiarBloque(id, btn){
+  const texto = document.getElementById(id).textContent;
+  navigator.clipboard.writeText(texto).then(() => {
+    const original = btn.textContent;
+    btn.textContent = '¡Copiado!';
+    setTimeout(() => btn.textContent = original, 1500);
+  });
+}
+
+function mostrarCopiado(){
+  const msg = document.getElementById('copiado-msg');
+  msg.style.display = 'inline';
+  setTimeout(() => msg.style.display = 'none', 1500);
+}
+
+function guardar(){
+  const data = {};
+  fieldIds.forEach(id => data[id] = document.getElementById(id).value);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+}
+
+function cargar(){
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if(!raw) return;
+  try{
+    const data = JSON.parse(raw);
+    fieldIds.forEach(id => { if(data[id] !== undefined) document.getElementById(id).value = data[id]; });
+  }catch(e){}
+}
+
+function limpiarFormulario(){
+  if(!confirm('¿Borrar todo el contenido de este formulario?')) return;
+  fieldIds.forEach(id => document.getElementById(id).value = '');
+  localStorage.removeItem(STORAGE_KEY);
+  generarPrompt();
+}
+
+fieldIds.forEach(id => document.getElementById(id).addEventListener('input', () => { guardar(); generarPrompt(); }));
+
+function prepararImpresion(){
+  document.querySelectorAll('textarea').forEach(el => {
+    const div = document.createElement('div');
+    div.className = 'print-value';
+    div.textContent = el.value && el.value.trim() ? el.value : '—';
+    el.insertAdjacentElement('afterend', div);
+  });
+}
+function restaurarDespuesDeImprimir(){
+  document.querySelectorAll('.print-value').forEach(d => d.remove());
+}
+window.addEventListener('beforeprint', prepararImpresion);
+window.addEventListener('afterprint', restaurarDespuesDeImprimir);
+
+cargar();
+generarPrompt();
+</script>
+</body>
+</html>
