@@ -4,6 +4,11 @@ Auditoría de la propuesta original (generada con ChatGPT), agenda integrada y
 plantillas HTML reutilizables para el área de prefectura, Residencias Campus
 Monterrey.
 
+**Sitio publicado:** una vez fusionado a `main` y activado GitHub Pages (ver
+sección 6), estos recursos quedan disponibles en
+`https://mentoriatec.github.io/MentorIA/` — un enlace único para compartir
+con los prefectos, sin pedirles que clonen nada.
+
 ## 1. Auditoría de la propuesta
 
 ### Qué se mantiene tal cual
@@ -121,3 +126,30 @@ prefectura (por ejemplo, en un congreso externo o un repositorio público),
 confirma con tu institución que puedes licenciarlo tú misma bajo CC
 BY-NC-SA; si el contenido se considera propiedad del Tec, ajusta la nota
 según la política de propiedad intelectual que corresponda.
+
+## 6. Publicación en GitHub Pages
+
+El repositorio incluye `.github/workflows/pages.yml`, que publica el
+contenido de esta carpeta (`prefectura/`) como sitio estático cada vez que
+hay un cambio en `main`. También se agregó un favicon de marca
+(`favicon.svg`), metadatos para que el enlace se vea bien al compartirse
+por WhatsApp/correo, y una página 404 con el mismo estilo del resto del
+sitio.
+
+Dos pasos quedan fuera del alcance de este asistente porque requieren
+acceso de administrador del repositorio en la interfaz de GitHub (no una
+API a la que este asistente tenga acceso):
+
+1. **Fusionar** el Pull Request de este taller a `main` (o pedirle al
+   asistente que lo haga, si ya lo revisaste).
+2. **Activar Pages una sola vez**: en el repositorio, ir a *Settings →
+   Pages → Build and deployment → Source* y elegir **"GitHub Actions"**
+   (no "Deploy from a branch"). A partir de ahí, cada cambio futuro en
+   `prefectura/` sobre `main` se publica solo, sin repetir este paso.
+
+Una vez hecho esto, la URL pública queda fija en
+`https://mentoriatec.github.io/MentorIA/` (el `index.html` de esta carpeta
+es la página de entrada). El archivo `moodmeter.html` en la raíz del
+repositorio no forma parte de este sitio publicado — solo se despliega el
+contenido de `prefectura/` para mantener una sola identidad visual
+coherente.
