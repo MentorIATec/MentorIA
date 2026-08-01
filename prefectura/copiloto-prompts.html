@@ -6,60 +6,73 @@
 <title>Constructor de prompts C.O.P.I.L.O.T.O.</title>
 <style>
   :root{
-    --primary:#2c3e50;
-    --muted:#7f8c8d;
-    --accent:#3498db;
-    --accent-dark:#2980b9;
-    --bg:#f9f9f9;
-    --card:#ffffff;
-    --border:#ddd;
-    --green:#27ae60;
-    --yellow:#f1c40f;
-    --red:#e74c3c;
+    --ink:#1E2A32;
+    --ink-soft:#57646B;
+    --paper:#F6F3EC;
+    --card:#FFFFFF;
+    --line:#E4DED2;
+    --teal:#2F6F6B;
+    --teal-dark:#24534F;
+    --teal-soft:#E3EEEC;
+    --gold:#C79A3D;
+    --gold-soft:#F5EAD2;
+    --verde:#4C8C63;
+    --amarillo:#D9A441;
+    --rojo:#C1503A;
   }
   *{box-sizing:border-box;}
-  body{font-family:Arial, sans-serif; margin:0; padding:0; background:var(--bg); color:#333;}
-  .container{max-width:860px; margin:0 auto; padding:24px;}
+  body{font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif; margin:0; padding:0; background:var(--paper); color:var(--ink);}
+  .topbar{height:5px; background:linear-gradient(90deg, var(--teal), var(--gold));}
+  .container{max-width:860px; margin:0 auto; padding:32px 24px 12px;}
+  .brand-bar{display:flex; align-items:center; gap:10px; margin-bottom:22px;}
+  .brand-mark{background:var(--teal); color:#fff; font-weight:bold; font-size:12px; letter-spacing:.5px; padding:5px 9px; border-radius:6px;}
+  .brand-name{color:var(--ink-soft); font-size:13px; font-weight:bold; letter-spacing:.3px;}
   header{text-align:center; margin-bottom:20px;}
-  h1{color:var(--primary); margin-bottom:4px;}
-  header p{margin-top:0; color:var(--muted);}
-  .banner{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom:20px; font-size:13px;}
+  .kicker{color:var(--teal); font-weight:bold; letter-spacing:1px; text-transform:uppercase; font-size:12.5px; margin-bottom:6px;}
+  h1{font-family:Georgia,'Iowan Old Style','Palatino Linotype','Book Antiqua',serif; color:var(--ink); margin:0 0 6px; font-size:28px;}
+  header p.subtitle{margin:0; color:var(--ink-soft); font-size:14.5px;}
+  .banner{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom:20px; font-size:12.5px;}
   .banner span{padding:6px 12px; border-radius:20px; color:#fff; font-weight:bold;}
-  .banner .g{background:var(--green);} .banner .y{background:var(--yellow); color:#5c4500;} .banner .r{background:var(--red);}
-  .card{background:var(--card); border-radius:10px; box-shadow:0 4px 6px rgba(0,0,0,0.08); padding:20px; margin-bottom:20px;}
-  .card h2{margin-top:0; color:var(--primary); font-size:18px; border-bottom:2px solid var(--accent); padding-bottom:8px;}
+  .banner .g{background:var(--verde);} .banner .y{background:var(--amarillo); color:#5c4500;} .banner .r{background:var(--rojo);}
+  .card{background:var(--card); border-radius:14px; box-shadow:0 10px 24px rgba(30,42,50,.08); padding:22px; margin-bottom:20px;}
+  .card h2{margin-top:0; font-family:Georgia,'Iowan Old Style',serif; color:var(--ink); font-size:19px; border-bottom:2px solid var(--teal-soft); padding-bottom:10px;}
   .letra-grid{display:grid; grid-template-columns:1fr; gap:14px;}
-  .letra{display:grid; grid-template-columns:60px 1fr; gap:12px; align-items:start;}
+  .letra{display:grid; grid-template-columns:52px 1fr; gap:12px; align-items:start;}
   .letra .badge{
-    background:var(--accent); color:#fff; border-radius:50%; width:44px; height:44px;
-    display:flex; align-items:center; justify-content:center; font-weight:bold; font-size:20px;
+    background:var(--teal); color:#fff; border-radius:50%; width:42px; height:42px;
+    display:flex; align-items:center; justify-content:center; font-weight:bold; font-size:18px;
+    font-family:Georgia,serif;
   }
-  label{display:block; font-weight:bold; margin-bottom:4px; font-size:14px; color:var(--primary);}
-  .hint{color:var(--muted); font-size:12px; margin:0 0 6px;}
+  label{display:block; font-weight:bold; margin-bottom:4px; font-size:13.5px; color:var(--ink);}
+  .hint{color:var(--ink-soft); font-size:12px; margin:0 0 6px;}
   textarea, input[type=text]{
-    width:100%; padding:9px; border:1px solid var(--border); border-radius:6px;
-    font-family:inherit; font-size:14px; background:#fff; resize:vertical;
+    width:100%; padding:10px; border:1px solid var(--line); border-radius:8px;
+    font-family:inherit; font-size:14px; background:#fff; resize:vertical; color:var(--ink);
   }
+  textarea:focus, input:focus{outline:none; border-color:var(--teal);}
   textarea{min-height:50px;}
   #prompt-generado{
-    width:100%; min-height:180px; border:1px solid var(--border); border-radius:6px; padding:12px;
-    font-family:inherit; font-size:14px; background:#f4f9fd; white-space:pre-wrap;
+    width:100%; min-height:180px; border:1px solid var(--line); border-radius:10px; padding:14px;
+    font-family:inherit; font-size:14px; background:var(--teal-soft); white-space:pre-wrap; color:var(--ink);
   }
-  .actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;}
+  .actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; align-items:center;}
   button{
-    background:var(--accent); color:#fff; border:none; padding:11px 16px; border-radius:6px;
-    cursor:pointer; font-size:14px; transition:background .2s;
+    background:var(--teal); color:#fff; border:none; padding:11px 18px; border-radius:999px;
+    cursor:pointer; font-size:13.5px; font-weight:bold; transition:background .2s;
   }
-  button:hover{background:var(--accent-dark);}
-  button.secondary{background:#95a5a6;}
-  button.secondary:hover{background:#7f8c8d;}
-  button.small{padding:6px 12px; font-size:13px;}
-  .biblioteca-item{border:1px solid var(--border); border-radius:8px; padding:14px; margin-bottom:14px; background:#fafafa;}
-  .biblioteca-item h3{margin:0 0 6px; color:var(--primary); font-size:15px;}
-  .biblioteca-item pre{white-space:pre-wrap; font-family:inherit; font-size:13.5px; margin:0 0 10px; color:#333;}
-  .copiado{color:var(--green); font-size:12px; font-weight:bold; margin-left:8px;}
+  button:hover{background:var(--teal-dark);}
+  button.secondary{background:transparent; color:var(--ink-soft); border:1px solid var(--line);}
+  button.secondary:hover{background:var(--teal-soft); color:var(--ink);}
+  button.small{padding:6px 14px; font-size:12.5px;}
+  .biblioteca-item{border:1px solid var(--line); border-radius:12px; padding:16px; margin-bottom:14px; background:#fbfaf7;}
+  .biblioteca-item h3{margin:0 0 6px; font-family:Georgia,serif; color:var(--ink); font-size:15.5px;}
+  .biblioteca-item pre{white-space:pre-wrap; font-family:inherit; font-size:13.5px; margin:0 0 10px; color:var(--ink);}
+  .copiado{color:var(--verde); font-size:12px; font-weight:bold; margin-left:8px;}
   .print-value{display:none;}
-  footer{text-align:center; color:var(--muted); font-size:12px; margin:30px 0 10px;}
+  .site-footer{max-width:860px; margin:34px auto 18px; padding-top:18px; border-top:1px solid var(--line); text-align:center; color:var(--ink-soft); font-size:12px; line-height:1.7;}
+  .site-footer p{margin:2px 0;}
+  .site-footer a{color:var(--teal);}
+  .site-footer-brand{font-weight:bold; color:var(--ink); display:flex; align-items:center; justify-content:center; gap:8px;}
 
   @media print{
     body{background:#fff;}
@@ -72,10 +85,13 @@
 </style>
 </head>
 <body>
+<div class="topbar"></div>
 <div class="container">
+  <div class="brand-bar"><span class="brand-mark">DC·IA</span><span class="brand-name">Diseñar comunidad con IA</span></div>
   <header>
+    <p class="kicker">Prefectura · MentorIA</p>
     <h1>Constructor de prompts C.O.P.I.L.O.T.O.</h1>
-    <p>Contexto · Objetivo · Personas · Información · Límites · Opciones · Tarea · Observación crítica</p>
+    <p class="subtitle">Contexto · Objetivo · Personas · Información · Límites · Opciones · Tarea · Observación crítica</p>
   </header>
 
   <div class="banner no-print">
@@ -192,13 +208,18 @@ Genera 5 conceptos distintos. Para cada uno incluye: necesidad atendida, dinámi
     </div>
   </div>
 
-  <div class="actions no-print">
+  <div class="actions no-print" style="justify-content:center;">
     <button onclick="window.print()">🖨️ Descargar como PDF</button>
     <button class="secondary" onclick="limpiarFormulario()">Limpiar formulario</button>
   </div>
   <p class="hint no-print" style="text-align:center;">Esta plantilla no envía nada a ningún servidor: el prompt se arma en tu navegador. Revisa el semáforo de uso responsable (semaforo-ia.html) antes de pegar información en cualquier IA.</p>
 
-  <footer>MentorIA · Recursos de prefectura · reutilizable para cualquier piso o comunidad</footer>
+  <footer class="site-footer">
+    <p class="site-footer-brand"><span class="brand-mark">DC·IA</span> Diseñar comunidad con IA — Taller de Prefectura</p>
+    <p>Tecnológico de Monterrey, Campus Monterrey</p>
+    <p>© 2026 Karen Ariadna Guzmán Vega · <a href="mailto:kareng@tec.mx">kareng@tec.mx</a></p>
+    <p>Contenido bajo licencia <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> — puede adaptarse citando a la autora, sin fines comerciales, compartiendo bajo la misma licencia.</p>
+  </footer>
 </div>
 
 <script>

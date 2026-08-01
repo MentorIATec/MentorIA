@@ -6,39 +6,52 @@
 <title>Recursos de prefectura — MentorIA</title>
 <style>
   :root{
-    --primary:#2c3e50;
-    --muted:#7f8c8d;
-    --accent:#3498db;
-    --accent-dark:#2980b9;
-    --bg:#f9f9f9;
-    --card:#ffffff;
-    --border:#ddd;
+    --ink:#1E2A32;
+    --ink-soft:#57646B;
+    --paper:#F6F3EC;
+    --card:#FFFFFF;
+    --line:#E4DED2;
+    --teal:#2F6F6B;
+    --teal-dark:#24534F;
+    --teal-soft:#E3EEEC;
+    --gold:#C79A3D;
   }
   *{box-sizing:border-box;}
-  body{font-family:Arial, sans-serif; margin:0; padding:0; background:var(--bg); color:#333;}
-  .container{max-width:860px; margin:0 auto; padding:24px;}
+  body{font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif; margin:0; padding:0; background:var(--paper); color:var(--ink);}
+  .topbar{height:5px; background:linear-gradient(90deg, var(--teal), var(--gold));}
+  .container{max-width:860px; margin:0 auto; padding:32px 24px 12px;}
+  .brand-bar{display:flex; align-items:center; gap:10px; margin-bottom:22px;}
+  .brand-mark{background:var(--teal); color:#fff; font-weight:bold; font-size:12px; letter-spacing:.5px; padding:5px 9px; border-radius:6px;}
+  .brand-name{color:var(--ink-soft); font-size:13px; font-weight:bold; letter-spacing:.3px;}
   header{text-align:center; margin-bottom:24px;}
-  h1{color:var(--primary); margin-bottom:4px;}
-  header p{margin-top:0; color:var(--muted);}
+  .kicker{color:var(--teal); font-weight:bold; letter-spacing:1px; text-transform:uppercase; font-size:12.5px; margin-bottom:6px;}
+  h1{font-family:Georgia,'Iowan Old Style','Palatino Linotype','Book Antiqua',serif; color:var(--ink); margin:0 0 6px; font-size:30px;}
+  header p.subtitle{margin:0; color:var(--ink-soft); font-size:15px;}
   .grid{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
   @media (max-width:640px){ .grid{grid-template-columns:1fr;} }
-  .tool{background:var(--card); border-radius:10px; box-shadow:0 4px 6px rgba(0,0,0,0.08); padding:20px; display:flex; flex-direction:column;}
-  .tool h2{margin:0 0 8px; color:var(--primary); font-size:17px;}
-  .tool p{color:var(--muted); font-size:14px; flex-grow:1;}
+  .tool{background:var(--card); border-radius:14px; box-shadow:0 10px 24px rgba(30,42,50,.08); padding:22px; display:flex; flex-direction:column;}
+  .tool h2{margin:0 0 8px; font-family:Georgia,'Iowan Old Style',serif; color:var(--ink); font-size:17px;}
+  .tool p{color:var(--ink-soft); font-size:14px; flex-grow:1;}
   .tool a{
-    display:inline-block; margin-top:10px; background:var(--accent); color:#fff; text-decoration:none;
-    padding:10px 16px; border-radius:6px; font-size:14px; text-align:center;
+    display:inline-block; margin-top:10px; background:var(--teal); color:#fff; text-decoration:none;
+    padding:10px 18px; border-radius:999px; font-size:14px; font-weight:bold; text-align:center;
   }
-  .tool a:hover{background:var(--accent-dark);}
-  .note{background:#eaf4fc; border-left:4px solid var(--accent); border-radius:6px; padding:14px 18px; margin:24px 0; font-size:14px; color:var(--primary);}
-  footer{text-align:center; color:var(--muted); font-size:12px; margin:30px 0 10px;}
+  .tool a:hover{background:var(--teal-dark);}
+  .note{background:var(--teal-soft); border-left:4px solid var(--teal); border-radius:8px; padding:14px 18px; margin:24px 0; font-size:14px; color:var(--ink);}
+  .site-footer{max-width:860px; margin:34px auto 18px; padding-top:18px; border-top:1px solid var(--line); text-align:center; color:var(--ink-soft); font-size:12px; line-height:1.7;}
+  .site-footer p{margin:2px 0;}
+  .site-footer a{color:var(--teal);}
+  .site-footer-brand{font-weight:bold; color:var(--ink); display:flex; align-items:center; justify-content:center; gap:8px;}
 </style>
 </head>
 <body>
+<div class="topbar"></div>
 <div class="container">
+  <div class="brand-bar"><span class="brand-mark">DC·IA</span><span class="brand-name">Diseñar comunidad con IA</span></div>
   <header>
+    <p class="kicker">Prefectura · MentorIA</p>
     <h1>Recursos de prefectura</h1>
-    <p>Plantillas reutilizables para diseñar comunidad con Design Thinking + IA</p>
+    <p class="subtitle">Plantillas reutilizables para diseñar comunidad con Design Thinking + IA</p>
   </header>
 
   <div class="grid">
@@ -76,7 +89,13 @@
     Son reutilizables cada semestre, para cualquier piso, comunidad o actividad nueva.
   </div>
 
-  <footer>MentorIA · Ver también <a href="README.md">README.md</a> para la auditoría y agenda del taller</footer>
+  <footer class="site-footer">
+    <p class="site-footer-brand"><span class="brand-mark">DC·IA</span> Diseñar comunidad con IA — Taller de Prefectura</p>
+    <p>Tecnológico de Monterrey, Campus Monterrey</p>
+    <p>© 2026 Karen Ariadna Guzmán Vega · <a href="mailto:kareng@tec.mx">kareng@tec.mx</a></p>
+    <p>Contenido bajo licencia <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> — puede adaptarse citando a la autora, sin fines comerciales, compartiendo bajo la misma licencia.</p>
+    <p>Ver también <a href="README.md">README.md</a> y <a href="BRANDING.md">BRANDING.md</a></p>
+  </footer>
 </div>
 </body>
 </html>

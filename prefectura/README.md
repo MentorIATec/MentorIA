@@ -95,3 +95,29 @@ futura del área de prefectura, no solo en este taller: cada vez que se
 organice un evento, una conversación 1:1 difícil, un seguimiento de
 mantenimiento o una postulación a congreso/Premios LiFE, el mismo archivo
 sirve como punto de partida.
+
+## 4. Identidad visual
+
+Las seis piezas (`index.html`, las cuatro plantillas y la presentación)
+comparten una misma paleta, tipografía y componentes (botones, tarjetas,
+kicker, footer) para que se lean como una sola serie de marca — no como
+archivos sueltos. La guía completa, con los códigos de color exactos y el
+bloque de footer listo para copiar en cualquier material nuevo, está en
+[`BRANDING.md`](./BRANDING.md).
+
+## 5. Autoría y uso
+
+Todas las páginas incluyen al pie:
+
+> © 2026 Karen Ariadna Guzmán Vega · Tecnológico de Monterrey, Campus
+> Monterrey · kareng@tec.mx
+> Contenido bajo licencia [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es)
+> — puede adaptarse citando a la autora, sin fines comerciales, compartiendo
+> bajo la misma licencia.
+
+**Nota:** este material se generó con correo institucional para un programa
+del Tec de Monterrey. Antes de distribuirlo ampliamente fuera del área de
+prefectura (por ejemplo, en un congreso externo o un repositorio público),
+confirma con tu institución que puedes licenciarlo tú misma bajo CC
+BY-NC-SA; si el contenido se considera propiedad del Tec, ajusta la nota
+según la política de propiedad intelectual que corresponda.
