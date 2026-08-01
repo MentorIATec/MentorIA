@@ -66,20 +66,11 @@
 
   @media print{
     *{-webkit-print-color-adjust:exact; print-color-adjust:exact; color-adjust:exact;}
-    /* Safari suele exportar el PDF con un perfil de color más amplio (Display P3),
-       lo que hace que colores saturados como el teal se vean más "cian" de lo
-       previsto. Etiquetar los colores como sRGB explícito evita esa reinterpretación. */
+    /* El teal de pantalla lee más "vivo/cian" en papel que en una pantalla retroiluminada;
+       para impresión usamos una versión más apagada del mismo tono. */
     :root{
-      --ink: color(srgb 0.1294 0.1373 0.1686);
-      --ink-soft: color(srgb 0.3569 0.3569 0.4000);
-      --paper: color(srgb 1.0000 0.9647 0.9137);
-      --card: color(srgb 1.0000 1.0000 1.0000);
-      --line: color(srgb 0.9176 0.8510 0.7608);
-      --coral: color(srgb 1.0000 0.4196 0.2902);
-      --coral-dark: color(srgb 0.8863 0.3098 0.1882);
-      --yellow: color(srgb 1.0000 0.7882 0.2353);
-      --teal: color(srgb 0.1843 0.7216 0.6510);
-      --teal-dark: color(srgb 0.1333 0.5686 0.5176);
+      --teal: #36877D;
+      --teal-dark: #2A786E;
     }
     body{background:#fff;}
     .no-print{display:none !important;}
@@ -90,6 +81,10 @@
     .box{margin-bottom:12px;}
     textarea, input, select{display:none;}
     .print-value{display:block; white-space:pre-wrap; border:1px solid #ccc; border-radius:6px; padding:8px; font-size:13px; min-height:18px;}
+    /* El relleno sólido de la pastilla de marca no siempre sobrevive la impresión
+       (varía por navegador); usamos contorno + texto de color, que no depende de
+       que el navegador conserve fondos de color. */
+    .brand-mark{background:transparent; color:var(--teal); border:1.5px solid var(--teal);}
   }
 </style>
 </head>
