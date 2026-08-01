@@ -63,9 +63,25 @@
   .site-footer-brand{font-weight:800; color:var(--ink); display:flex; align-items:center; justify-content:center; gap:8px;}
 
   @media print{
+    *{-webkit-print-color-adjust:exact; print-color-adjust:exact; color-adjust:exact;}
+    /* El teal de pantalla lee más "vivo/cian" en papel que en una pantalla retroiluminada;
+       para impresión usamos una versión más apagada del mismo tono. */
+    :root{
+      --teal: #36877D;
+      --teal-dark: #2A786E;
+    }
     body{background:#fff;}
     .no-print{display:none !important;}
     .columna{box-shadow:none; border:1.5px solid #999; page-break-inside:avoid;}
+    /* El relleno sólido de la pastilla de marca y de los encabezados de columna no
+       siempre sobrevive la impresión (varía por navegador). El texto de estos
+       encabezados es información, no decoración, así que en vez de blanco sobre
+       color usamos texto de color sobre blanco + una línea inferior. */
+    .brand-mark{background:transparent; color:var(--teal); border:1.5px solid var(--teal);}
+    .col-header{background:transparent !important; border-bottom:3px solid currentColor;}
+    .col-verde .col-header{color:#337757;}
+    .col-amarillo .col-header{color:#5c4500;}
+    .col-rojo .col-header{color:#C02A2F;}
   }
 </style>
 </head>

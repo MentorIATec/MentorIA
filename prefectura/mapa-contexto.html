@@ -63,12 +63,23 @@
   .site-footer-brand{font-weight:800; color:var(--ink); display:flex; align-items:center; justify-content:center; gap:8px;}
 
   @media print{
+    *{-webkit-print-color-adjust:exact; print-color-adjust:exact; color-adjust:exact;}
+    /* El teal de pantalla lee más "vivo/cian" en papel que en una pantalla retroiluminada;
+       para impresión usamos una versión más apagada del mismo tono. */
+    :root{
+      --teal: #36877D;
+      --teal-dark: #2A786E;
+    }
     body{background:#fff;}
     .no-print{display:none !important;}
     .card{box-shadow:none; border:1.5px solid #999; page-break-inside:avoid;}
     textarea, input, select{display:none;}
     .print-value{display:block; white-space:pre-wrap; border:1px solid #ccc; border-radius:6px; padding:8px; font-size:14px; min-height:20px;}
     .pregunta-box{border:1.5px solid #999;}
+    /* El relleno sólido de la pastilla de marca no siempre sobrevive la impresión
+       (varía por navegador); usamos contorno + texto de color, que no depende de
+       que el navegador conserve fondos de color. */
+    .brand-mark{background:transparent; color:var(--teal); border:1.5px solid var(--teal);}
   }
 </style>
 </head>
@@ -153,7 +164,7 @@
   </div>
 
   <div class="actions no-print">
-    <button onclick="window.print()">🖨️ Descargar como PDF</button>
+    <button onclick="descargarPDF()">🖨️ Descargar como PDF</button>
     <button class="secondary" onclick="limpiarFormulario()">Limpiar formulario</button>
   </div>
   <p class="hint no-print" style="text-align:center;">Al imprimir, elige "Guardar como PDF" como destino. Todo se guarda solo en este navegador: no se envía a ningún servidor.</p>
@@ -204,6 +215,7 @@ fieldIds.forEach(id => {
 });
 
 function prepararImpresion(){
+  restaurarDespuesDeImprimir(); // idempotente: evita duplicar si ya se preparó (ej. Cmd/Ctrl+P y el botón se disparan ambos)
   document.querySelectorAll('textarea, input[type=text], input[type=date], select').forEach(el => {
     const div = document.createElement('div');
     div.className = 'print-value';
@@ -216,8 +228,24 @@ function prepararImpresion(){
 function restaurarDespuesDeImprimir(){
   document.querySelectorAll('.print-value').forEach(d => d.remove());
 }
+
+// Safari no siempre pinta los cambios de "beforeprint" antes de capturar el PDF
+// (puede generar una página en blanco). Al usar el botón, preparamos el DOM y
+// esperamos dos frames de pintura antes de llamar a print() para dar tiempo
+// a WebKit. "beforeprint"/"afterprint" y matchMedia quedan como respaldo para
+// quien imprima con Cmd/Ctrl+P en vez del botón.
+function descargarPDF(){
+  prepararImpresion();
+  requestAnimationFrame(() => requestAnimationFrame(() => window.print()));
+}
+
 window.addEventListener('beforeprint', prepararImpresion);
 window.addEventListener('afterprint', restaurarDespuesDeImprimir);
+if(window.matchMedia){
+  window.matchMedia('print').addEventListener('change', (e) => {
+    if(e.matches) prepararImpresion(); else restaurarDespuesDeImprimir();
+  });
+}
 
 cargar();
 actualizarPregunta();
